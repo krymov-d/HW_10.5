@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pin_code"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF">
+
+    <!--android:clipToOutline="true"-->
+    <TextView
+        android:id="@+id/code"
+        style="@style/code_style"
+        android:hint="@string/code"
+        android:maxLength="4"/>
+
+    <Button
+        android:id="@+id/button_one"
+        style="@style/button_style"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="289dp"
+        android:text="@string/one" />
+
+    <Button
+        android:id="@+id/button_two"
+        style="@style/button_style"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="289dp"
+        android:text="@string/two" />
+
+    <Button
+        android:id="@+id/button_three"
+        style="@style/button_style"
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="289dp"
+        android:text="@string/three" />
+
+    <Button
+        android:id="@+id/button_four"
+        style="@style/button_style"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="361dp"
+        android:text="@string/four" />
+
+    <Button
+        android:id="@+id/button_five"
+        style="@style/button_style"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="361dp"
+        android:text="@string/five" />
+
+    <Button
+        android:id="@+id/button_six"
+        style="@style/button_style"
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="361dp"
+        android:text="@string/six" />
+
+
+    <Button
+        android:id="@+id/button_seven"
+        style="@style/button_style"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="433dp"
+        android:text="@string/seven" />
+
+    <Button
+        android:id="@+id/button_eight"
+        style="@style/button_style"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="433dp"
+        android:text="@string/eight" />
+
+    <Button
+        android:id="@+id/button_nine"
+        style="@style/button_style"
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="433dp"
+        android:text="@string/nine" />
+
+    <Button
+        android:id="@+id/button_del"
+        style="@style/button_style"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="505dp"
+        android:text="@string/del" />
+
+    <Button
+        android:id="@+id/button_zero"
+        style="@style/button_style"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="505dp"
+        android:text="@string/zero" />
+
+    <Button
+        android:id="@+id/button_ok"
+        style="@style/button_style"
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="505dp"
+        android:text="@string/ok" />
+</RelativeLayout>
