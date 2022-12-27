@@ -14,81 +14,57 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        buttonClicked()
+
+    }
+
+    private fun buttonClicked() {
+
         val numbers: MutableList<Int> = mutableListOf()
         val code: TextView = findViewById(R.id.code)
 
-        val one1: Button = findViewById(R.id.button_one)
-        one1.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(1)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnOne: Button = findViewById(R.id.btn_one)
+        btnOne.setOnClickListener {
+            btnWork(numbers, 1, code)
         }
-        val two: Button = findViewById(R.id.button_two)
-        two.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(2)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnTwo: Button = findViewById(R.id.btn_two)
+        btnTwo.setOnClickListener {
+            btnWork(numbers, 2, code)
         }
-        val three: Button = findViewById(R.id.button_three)
-        three.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(3)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnThree: Button = findViewById(R.id.btn_three)
+        btnThree.setOnClickListener {
+            btnWork(numbers, 3, code)
         }
-        val four: Button = findViewById(R.id.button_four)
-        four.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(4)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnFour: Button = findViewById(R.id.btn_four)
+        btnFour.setOnClickListener {
+            btnWork(numbers, 4, code)
         }
-        val five: Button = findViewById(R.id.button_five)
-        five.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(5)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnFive: Button = findViewById(R.id.btn_five)
+        btnFive.setOnClickListener {
+            btnWork(numbers, 5, code)
         }
-        val six: Button = findViewById(R.id.button_six)
-        six.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(6)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnSix: Button = findViewById(R.id.btn_six)
+        btnSix.setOnClickListener {
+            btnWork(numbers, 6, code)
         }
-        val seven: Button = findViewById(R.id.button_seven)
-        seven.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(7)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnSeven: Button = findViewById(R.id.btn_seven)
+        btnSeven.setOnClickListener {
+            btnWork(numbers, 7, code)
         }
-        val eight: Button = findViewById(R.id.button_eight)
-        eight.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(8)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnEight: Button = findViewById(R.id.btn_eight)
+        btnEight.setOnClickListener {
+            btnWork(numbers, 8, code)
         }
-        val nine: Button = findViewById(R.id.button_nine)
-        nine.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(9)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnNine: Button = findViewById(R.id.btn_nine)
+        btnNine.setOnClickListener {
+            btnWork(numbers, 9, code)
         }
-        val zero: Button = findViewById(R.id.button_zero)
-        zero.setOnClickListener {
-            removeLast(numbers)
-            numbers.add(0)
-            code.text = numbers.joinToString(separator = "")
-            color(code)
+        val btnZero: Button = findViewById(R.id.btn_zero)
+        btnZero.setOnClickListener {
+            btnWork(numbers, 0, code)
         }
-        val del: Button = findViewById(R.id.button_del)
-        del.setOnClickListener {
+        val btnDel: Button = findViewById(R.id.btn_del)
+        btnDel.setOnClickListener {
             if (numbers.size != 0) {
                 numbers.removeLast()
                 code.text = numbers.joinToString(separator = "")
@@ -96,8 +72,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val ok: Button = findViewById(R.id.button_ok)
-        ok.setOnClickListener {
+        val btnOk: Button = findViewById(R.id.btn_ok)
+        btnOk.setOnClickListener {
             if (numbers.size == 4 && code.text.equals("1567")) {
                 Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show()
             } else {
@@ -106,7 +82,13 @@ class MainActivity : AppCompatActivity() {
             }
             numbers.clear()
         }
+    }
 
+    private fun btnWork(numbers: MutableList<Int>, digit: Int, code: TextView) {
+        removeLast(numbers)
+        numbers.add(digit)
+        code.text = numbers.joinToString(separator = "")
+        color(code)
     }
 
     private fun color(code: TextView) {
