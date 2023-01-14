@@ -102,6 +102,10 @@ class MainActivity : AppCompatActivity() {
                 tvPINCode.text = visibleCode
             }
         }
+        btnDel.setOnLongClickListener {
+            tvPINCode.text = ""
+            true
+        }
 
         val btnOk: Button = findViewById(R.id.btn_ok)
         btnOk.setOnClickListener {
