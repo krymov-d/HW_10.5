@@ -1,12 +1,16 @@
 package kz.kd.hw_105
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
+private const val KEY = "Pin Code"
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("ResourceAsColor")
@@ -17,10 +21,22 @@ class MainActivity : AppCompatActivity() {
         btnClicked()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        visibleCode = tvPINCode.text.toString()
+        outState.putString(KEY, visibleCode)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        tvPINCode.text = savedInstanceState.getString(KEY)
+    }
+
     private var visibleCode: String = ""
+    private lateinit var tvPINCode: TextView
 
     private fun btnClicked() {
-        val tvPINCode: TextView = findViewById(R.id.tv_pin_code)
+        tvPINCode = findViewById(R.id.tv_pin_code)
 
         val btnOne: Button = findViewById(R.id.btn_one)
         btnOne.setOnClickListener {
@@ -97,6 +113,8 @@ class MainActivity : AppCompatActivity() {
             } else if (tvPINCode.text.equals("1567")) {
                 tvPINCode.setTextColor(Color.parseColor("#17DB5A"))
                 Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, SecondActivity::class.java)
+                startActivity(intent)
             } else {
                 tvPINCode.setTextColor(Color.parseColor("#F91717"))
                 Toast.makeText(this, "Wrong PIN!", Toast.LENGTH_SHORT).show()
