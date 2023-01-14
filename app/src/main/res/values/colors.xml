@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="btn_bg_white">#F5F5F5</color>
     <color name="btn_bg_blue">#1789DB</color>
+    <color name="tv_hint_color">#808080</color>
 </resources>
