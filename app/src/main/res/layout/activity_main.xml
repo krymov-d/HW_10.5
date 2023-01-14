@@ -7,7 +7,7 @@
     android:background="#FFFFFF">
 
     <TextView
-        android:id="@+id/code"
+        android:id="@+id/tv_pin_code"
         style="@style/code_style"
         android:layout_marginBottom="32dp"
         android:hint="@string/code"

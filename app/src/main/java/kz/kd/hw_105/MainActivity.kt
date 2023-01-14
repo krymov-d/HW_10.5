@@ -13,120 +13,106 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        buttonClicked()
+
+        btnClicked()
     }
 
+    private var visibleCode: String = ""
 
-    private var code: String = ""
-
-    private fun buttonClicked() {
-        val tvPIN: TextView = findViewById(R.id.code)
+    private fun btnClicked() {
+        val tvPINCode: TextView = findViewById(R.id.tv_pin_code)
 
         val btnOne: Button = findViewById(R.id.btn_one)
         btnOne.setOnClickListener {
-            tvPIN.text = btnWork(digit = 1, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 1, tvPINCode = tvPINCode)
         }
 
         val btnTwo: Button = findViewById(R.id.btn_two)
         btnTwo.setOnClickListener {
-            tvPIN.text = btnWork(digit = 2, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 2, tvPINCode = tvPINCode)
         }
 
         val btnThree: Button = findViewById(R.id.btn_three)
         btnThree.setOnClickListener {
-            tvPIN.text = btnWork(digit = 3, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 3, tvPINCode = tvPINCode)
         }
         val btnFour: Button = findViewById(R.id.btn_four)
         btnFour.setOnClickListener {
-            tvPIN.text = btnWork(digit = 4, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 4, tvPINCode = tvPINCode)
         }
         val btnFive: Button = findViewById(R.id.btn_five)
         btnFive.setOnClickListener {
-            tvPIN.text = btnWork(digit = 5, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 5, tvPINCode = tvPINCode)
         }
         val btnSix: Button = findViewById(R.id.btn_six)
         btnSix.setOnClickListener {
-            tvPIN.text = btnWork(digit = 6, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 6, tvPINCode = tvPINCode)
         }
         val btnSeven: Button = findViewById(R.id.btn_seven)
         btnSeven.setOnClickListener {
-            tvPIN.text = btnWork(digit = 7, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 7, tvPINCode = tvPINCode)
         }
         val btnEight: Button = findViewById(R.id.btn_eight)
         btnEight.setOnClickListener {
-            tvPIN.text = btnWork(digit = 8, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 8, tvPINCode = tvPINCode)
         }
         val btnNine: Button = findViewById(R.id.btn_nine)
         btnNine.setOnClickListener {
-            tvPIN.text = btnWork(digit = 9, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 9, tvPINCode = tvPINCode)
         }
         val btnZero: Button = findViewById(R.id.btn_zero)
         btnZero.setOnClickListener {
-            tvPIN.text = btnWork(digit = 0, tvPIN = tvPIN)
+            color(tvPINCode)
+            tvPINCode.text = btnDigitAdd(digit = 0, tvPINCode = tvPINCode)
         }
 
-        /*
         val btnDel: Button = findViewById(R.id.btn_del)
         btnDel.setOnClickListener {
-            if (numbers.size != 0) {
-                numbers.removeLast()
-                tvPIN.text = numbers.joinToString(separator = "")
-                color(tvPIN)
+            color(tvPINCode)
+            visibleCode = tvPINCode.text.toString()
+            val len = visibleCode.length
+            if (len == 0) {
+                Toast.makeText(this, "Empty PIN", Toast.LENGTH_SHORT).show()
+            } else {
+                visibleCode = visibleCode.dropLast(1)
+                tvPINCode.text = visibleCode
             }
         }
 
         val btnOk: Button = findViewById(R.id.btn_ok)
         btnOk.setOnClickListener {
-            if (numbers.size == 4 && tvPIN.text.equals("1567")) {
+            visibleCode = tvPINCode.text.toString()
+            val len = visibleCode.length
+            if (len == 0) {
+                Toast.makeText(this, "Enter PIN", Toast.LENGTH_SHORT).show()
+            } else if (tvPINCode.text.equals("1567")) {
+                tvPINCode.setTextColor(Color.parseColor("#17DB5A"))
                 Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show()
             } else {
-                tvPIN.setTextColor(Color.parseColor("#F91717"))
+                tvPINCode.setTextColor(Color.parseColor("#F91717"))
                 Toast.makeText(this, "Wrong PIN!", Toast.LENGTH_SHORT).show()
             }
-            numbers.clear()
         }
-        */
     }
 
-
-    private fun btnWork(digit: Int, tvPIN: TextView): String {
-        code = tvPIN.text.toString()
-        val len = code.length
-        val char = digit.toChar()
-
-        if (len == 4) {
-            if (code[3] == char) {
-                if (code[2] == char) {
-                    if(code[1] == char) {
-                        if(code[0] == char) {
-                            return code
-                        }
-                        else {
-                            code = ""
-                            code = "$digit" + "$digit" + "$digit" + "$digit"
-                            return code
-                        }
-                    }
-                    else {
-                        code = code.dropLast(3)
-                        code = code + "$digit" + "$digit" + "$digit"
-                        return code
-                    }
-                }
-                else {
-                    code = code.dropLast(2)
-                    code = code + "$digit" + "$digit"
-                    return code
-                }
-            }
-            else {
-                code = code.dropLast(1)
-                code += "$digit"
-                return code
-            }
-        }
-        else {
-            return code + "$digit"
+    private fun btnDigitAdd(digit: Int, tvPINCode: TextView): String {
+        visibleCode = tvPINCode.text.toString()
+        val len = visibleCode.length
+        return if (len == 4) {
+            visibleCode = visibleCode.dropLast(1)
+            visibleCode += "$digit"
+            visibleCode
+        } else {
+            visibleCode + "$digit"
         }
     }
 

@@ -10,7 +10,7 @@
         <item name="android:textColorHint">@color/tv_hint_color</item>
         <item name="android:gravity">center_horizontal|center_vertical</item>
         <item name="fontFamily">@font/montserrat</item>
-        <item name="android:maxLength">40</item>
+        <item name="android:maxLength">4</item>
     </style>
 
     <style name="btn_style">
