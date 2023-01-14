@@ -95,6 +95,7 @@
         android:id="@+id/btn_del"
         style="@style/btn_style"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/btn_bg"
         android:text="@string/del"
         app:layout_constraintEnd_toStartOf="@id/btn_zero"
         app:layout_constraintTop_toTopOf="@id/btn_zero" />
@@ -112,7 +113,9 @@
         android:id="@+id/btn_ok"
         style="@style/btn_style"
         android:layout_marginStart="32dp"
+        android:background="@drawable/btn_ok_bg_selector"
         android:text="@string/ok"
+        android:textColor="@color/btn_bg_blue"
         app:layout_constraintStart_toEndOf="@id/btn_zero"
         app:layout_constraintTop_toTopOf="@id/btn_zero" />
 </androidx.constraintlayout.widget.ConstraintLayout>
