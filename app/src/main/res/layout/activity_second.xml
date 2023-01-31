@@ -5,13 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/tb_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toTopOf="@id/fl_second_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/tb_chat"
+            layout="@layout/tb_chat"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/tb_favorites"
+            layout="@layout/tb_favorites"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/tb_convertor"
+            layout="@layout/tb_convertor"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/tb_convertor_delete"
+            layout="@layout/tb_delete"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/tb_search"
+            layout="@layout/tb_search"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/tb_account"
+            layout="@layout/tb_account"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/v_border"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/btn_text_color" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     <FrameLayout
         android:id="@+id/fl_second_activity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bnv_second_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tb_ll"
         app:layout_constraintVertical_weight="1" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,9 +70,11 @@
         android:background="@color/white"
         android:theme="@style/theme_bnv"
         app:backgroundTint="?attr/bnv_bg"
+        app:itemRippleColor="@color/btn_text_color_tint_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_second_activity"
         app:menu="@menu/menu_bnv_second_activity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
