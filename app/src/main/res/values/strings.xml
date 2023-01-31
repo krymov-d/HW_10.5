@@ -13,4 +13,29 @@
     <string name="zero">0</string>
     <string name="del">&#60;</string>
     <string name="ok">OK</string>
+
+    <string name="_0">0</string>
+    <string name="kz">Казахстан</string>
+    <string name="kz_currency">Тенге</string>
+    <string name="usa">США</string>
+    <string name="usa_currency">Доллары</string>
+    <string name="tr">Турция</string>
+    <string name="tr_currency">Лира</string>
+    <string name="eu">EC</string>
+    <string name="eu_currency">Евро</string>
+    <string name="rus">Россия</string>
+    <string name="rus_currency">Рубль</string>
+    <string name="flag">flag</string>
+    <string name="add">Добавить</string>
+    <string name="tb_convertor">Convertor</string>
+    <string name="tb_item_selected">Item Selected</string>
+    <string name="menu_main">Menu Main</string>
+    <string name="menu_main_sort">Сортировать по</string>
+    <string name="menu_main_reset">Сбросить сортировку</string>
+    <string name="menu_main_sort_alpha">Алфавиту</string>
+    <string name="menu_main_sort_num">Стоимости</string>
+    <string name="delete">Удалить</string>
+    <string name="delete_confirmation">Вы уверены, что хотите удалить валюту?</string>
+    <string name="df_delete_cancel">Отмена</string>
+    <string name="df_delete_confirm">Удалить</string>
 </resources>

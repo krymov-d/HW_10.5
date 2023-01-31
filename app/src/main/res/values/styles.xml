@@ -24,4 +24,9 @@
         <item name="android:lineSpacingExtra">-1sp</item>
         <item name="fontFamily">@font/montserrat_medium</item>
     </style>
+
+    <style name="tb_title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
 </resources>
