@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="theme_bnv" parent="Theme.MaterialComponents">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/btn_bg_blue</item>
+        <item name="colorOnSurface">@color/bnv_item_inactive</item>
+    </style>
+</resources>

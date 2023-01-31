@@ -31,4 +31,6 @@
     <color name="tb_background">#36787474</color>
 
     <color name="df_delete_border">#F57A7A</color>
+
+    <color name="bnv_item_inactive">#949494</color>
 </resources>
