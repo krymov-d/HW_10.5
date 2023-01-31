@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_bnv_chat"
+        android:enabled="true"
+        android:icon="@drawable/iv_bnv_chat_selector"
+        android:title="@string/bnv_chat"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_bnv_news"
+        android:enabled="true"
+        android:icon="@drawable/iv_bnv_news_selector"
+        android:title="@string/bnv_news"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_bnv_convertor"
+        android:enabled="true"
+        android:icon="@drawable/iv_bnv_convertor_selector"
+        android:title="@string/bnv_convertor"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_bnv_search"
+        android:enabled="true"
+        android:icon="@drawable/iv_bnv_search_selector"
+        android:title="@string/bnv_search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_bnv_account"
+        android:enabled="true"
+        android:icon="@drawable/iv_bnv_account_selector"
+        android:title="@string/bnv_account"
+        app:showAsAction="ifRoom" />
+</menu>
