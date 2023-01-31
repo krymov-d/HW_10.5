@@ -30,6 +30,11 @@
 
     <string name="tb_convertor">Convertor</string>
     <string name="tb_item_selected">Item Selected</string>
+    <string name="tb_chat">Chat</string>
+    <string name="tb_favorites">Favorites</string>
+    <string name="tb_search">Search</string>
+    <string name="tb_account">Account</string>
+
 
     <string name="menu_main">Menu Main</string>
     <string name="menu_main_sort">Сортировать по</string>
@@ -44,7 +49,7 @@
 
     <string name="bnv_chat">Chat</string>
     <string name="bnv_convertor">Convertor</string>
-    <string name="bnv_news">News</string>
+    <string name="bnv_favorites">Favorites</string>
     <string name="bnv_search">Search</string>
     <string name="bnv_account">Account</string>
 </resources>
