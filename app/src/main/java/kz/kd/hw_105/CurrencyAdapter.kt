@@ -51,7 +51,6 @@ class CurrencyAdapter(
             val btnAdd: Button = holder.itemView.findViewById(R.id.btn_add)
             btnAdd.setOnClickListener {
                 listener.bntAddClicked()
-                newCurrencyAdded(position)
             }
         }
     }

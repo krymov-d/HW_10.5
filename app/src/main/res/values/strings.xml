@@ -35,7 +35,6 @@
     <string name="tb_search">Search</string>
     <string name="tb_account">Account</string>
 
-
     <string name="menu_main">Menu Main</string>
     <string name="menu_main_sort">Сортировать по</string>
     <string name="menu_main_reset">Сбросить сортировку</string>
@@ -52,4 +51,8 @@
     <string name="bnv_favorites">Favorites</string>
     <string name="bnv_search">Search</string>
     <string name="bnv_account">Account</string>
+    <string name="bsd_convertor_name_country">Название страны</string>
+    <string name="bsd_convertor_name_hint">Название валюты</string>
+    <string name="bsd_convertor_amount_hint">Кол. тенге в валюте</string>
+    <string name="bsd_convertor_btn_flag">Выбрать флаг</string>
 </resources>

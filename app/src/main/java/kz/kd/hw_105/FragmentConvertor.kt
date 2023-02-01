@@ -54,6 +54,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor) {
             CurrencyAdapter(layoutInflater, object : CurrencyAdapter.BtnAddClickListener {
                 override fun bntAddClicked() {
                     currencyLayoutManager.scrollToPosition(currencyAdapter.itemCount)
+                    BSDConvertor().show(childFragmentManager, null)
                 }
             })
         currencyLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

@@ -1,8 +1,8 @@
 package kz.kd.hw_105
 
 data class Currency(
-    val amount: String = "",
-    val flag: Int,
-    val country: String,
-    val currencyName: String
+    var amount: String = "",
+    var flag: Int,
+    var country: String,
+    var currencyName: String
 )
