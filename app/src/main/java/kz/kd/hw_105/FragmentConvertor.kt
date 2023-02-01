@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 private const val KEY_VISIBLE_ITEM = "Visible Item"
 private const val KEY_COMPLETELY_VISIBLE_ITEM = "Completely Visible Item"
 
-class FragmentConvertor : Fragment(R.layout.fragment_convertor) {
+class FragmentConvertor : Fragment(R.layout.fragment_convertor), NewCurrencyAdd {
 
     private lateinit var currencyAdapter: CurrencyAdapter
     private lateinit var currencyLayoutManager: LinearLayoutManager
@@ -141,5 +141,8 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor) {
             )
         )
         currencyAdapter.updateDataSet(currencyList)
+    }
+
+    override fun setNewCurrency(currency: Currency) {
     }
 }
