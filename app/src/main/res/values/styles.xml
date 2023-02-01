@@ -29,4 +29,11 @@
         <item name="android:textSize">22sp</item>
         <item name="android:fontFamily">@font/montserrat</item>
     </style>
+
+    <style name="chip_style" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="android:background">@drawable/chip_bg_selector</item>
+        <item name="android:textColor">@drawable/chip_bg_text_selector</item>
+        <item name="chipStartPadding">8dp</item>
+        <item name="chipEndPadding">8dp</item>
+    </style>
 </resources>
