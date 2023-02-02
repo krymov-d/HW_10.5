@@ -39,7 +39,7 @@
         app:tabIndicatorColor="@color/btn_bg_blue"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorGravity="bottom"
-        app:tabIndicatorHeight="2dp"
+        app:tabIndicatorHeight="1dp"
         app:tabMinWidth="200dp"
         app:tabMode="scrollable"
         app:tabPaddingEnd="32dp"

@@ -18,9 +18,10 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
 
     private fun initViewPager(view: View) {
         vpAccount = view.findViewById(R.id.account_view_pager)
+        vpTabLayout = view.findViewById(R.id.account_tab_layout)
         val vpAccountAdapter = AccountViewPagerAdapter()
         vpAccount.adapter = vpAccountAdapter
         vpAccount.currentItem = 0
-//        vpTabLayout.setupWithViewPager(vpAccount)
+        vpTabLayout.setupWithViewPager(vpAccount)
     }
 }

@@ -31,4 +31,21 @@ class AccountViewPagerAdapter : PagerAdapter() {
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view === `object`
     }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return when (position) {
+            0 -> {
+                "Основные"
+            }
+            1 -> {
+                "Статистика"
+            }
+            2 -> {
+                "Еще один таб"
+            }
+            else -> {
+                null
+            }
+        }
+    }
 }
