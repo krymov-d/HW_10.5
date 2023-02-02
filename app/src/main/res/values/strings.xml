@@ -56,4 +56,9 @@
     <string name="bsd_convertor_amount_hint">Кол. тенге в валюте</string>
     <string name="bsd_convertor_btn_flag">Выбрать флаг</string>
     <string name="search_hint">Поиск валюты</string>
+    <string name="account_tab_main">Основные</string>
+    <string name="account_tab_statistics">Статистика</string>
+    <string name="account_tab_another">Еще один таб</string>
+
+    <string name="tv_contacts">Azat Serzhanov\nazatserzhan@gmail.com</string>
 </resources>
