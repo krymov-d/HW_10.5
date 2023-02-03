@@ -1,9 +1,6 @@
 package kz.kd.hw_105
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
@@ -33,42 +30,6 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
         tbSearch = findViewById(R.id.tb_search)
         tbAccount = findViewById(R.id.tb_account)
         setToolBarVisibility(0)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater: MenuInflater = menuInflater
-        if (tbConvertor.isVisible) {
-            inflater.inflate(R.menu.menu_tb_convertor, menu)
-        } else if (tbConvertorDelete.isVisible) {
-            inflater.inflate(R.menu.menu_tb_convertor_delete, menu)
-        }
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_main_reset -> {
-//                currencyAdapter.reset()
-                invalidateOptionsMenu()
-                true
-            }
-            R.id.menu_main_sort_alpha -> {
-                item.isChecked = !item.isChecked
-//                currencyAdapter.sortAlpha()
-                true
-            }
-            R.id.menu_main_sort_num -> {
-                item.isChecked = !item.isChecked
-//                currencyAdapter.sortNum()
-                true
-            }
-            R.id.menu_delete -> {
-//                DFDelete().show(supportFragmentManager, null)
-                DFConvertorDelete().show(supportFragmentManager, null)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     private fun initBottomNavigationBar() {

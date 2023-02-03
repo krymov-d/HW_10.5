@@ -1,8 +1,14 @@
 package kz.kd.hw_105
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat.invalidateOptionsMenu
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -18,8 +24,13 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), NewCurrencyAdd 
     private lateinit var currencyLayoutManager: LinearLayoutManager
     private lateinit var rvCurrency: RecyclerView
 
+    private lateinit var tbConvertor: Toolbar
+    private lateinit var tbConvertorDelete: Toolbar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setHasOptionsMenu(true)
 
         //Does not work
         if (savedInstanceState != null) {
@@ -29,6 +40,42 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), NewCurrencyAdd 
                 firstVisibleItem,
                 firstCompletelyVisibleItem
             )
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        tbConvertor = requireActivity().findViewById(R.id.tb_convertor)
+        tbConvertorDelete = requireActivity().findViewById(R.id.tb_convertor_delete)
+        val convertorInflater: MenuInflater = requireActivity().menuInflater
+        if (tbConvertor.isVisible) {
+            convertorInflater.inflate(R.menu.menu_tb_convertor, menu)
+        } else if (tbConvertorDelete.isVisible) {
+            convertorInflater.inflate(R.menu.menu_tb_convertor_delete, menu)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_main_reset -> {
+                currencyAdapter.reset()
+                invalidateOptionsMenu(requireActivity())
+                true
+            }
+            R.id.menu_main_sort_alpha -> {
+                item.isChecked = !item.isChecked
+                currencyAdapter.sortAlpha()
+                true
+            }
+            R.id.menu_main_sort_num -> {
+                item.isChecked = !item.isChecked
+                currencyAdapter.sortNum()
+                true
+            }
+            R.id.menu_delete -> {
+                DFConvertorDelete().show(requireActivity().supportFragmentManager, null)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
