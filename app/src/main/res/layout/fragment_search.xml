@@ -11,7 +11,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="8dp"
@@ -30,11 +30,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_it_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="52dp"
             android:fontFamily="@font/montserrat_light"
             android:hint="@string/search_hint"
-            android:textColor="@color/tv_text_color"
-            android:textSize="22sp" />
+            android:textColor="@color/tv_text_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <HorizontalScrollView
@@ -42,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbars="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/image_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_l_search">

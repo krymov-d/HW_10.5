@@ -64,6 +64,7 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
             }
             R.id.menu_delete -> {
 //                DFDelete().show(supportFragmentManager, null)
+                DFConvertorDelete().show(supportFragmentManager, null)
                 true
             }
             else -> super.onOptionsItemSelected(item)
