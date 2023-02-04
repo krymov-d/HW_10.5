@@ -16,13 +16,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency,
-    IFGetCurrencyPosToDelete, IFDeleteCurrency, IFBtnAddCurrency {
+    IFGetCurrencyPosToDelete, IFDeleteCurrency, IFBtnAddCurrency, IFSetCurrencyPosToDelete {
 
     private lateinit var tbSecondActivity: Toolbar
     private lateinit var tbConvertorDelete: Toolbar
     private lateinit var rvCurrency: RecyclerView
     private lateinit var currencyAdapter: CurrencyAdapter
     private lateinit var currencyLayoutManager: LinearLayoutManager
+
+    private var currencyPosToDelete: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +83,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency,
     private fun initCurrencyRecycler(view: View) {
         rvCurrency = view.findViewById(R.id.rv_currency)
         currencyLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        currencyAdapter = CurrencyAdapter(layoutInflater, this)
+        currencyAdapter = CurrencyAdapter(layoutInflater, this, this)
         rvCurrency.adapter = currencyAdapter
         rvCurrency.layoutManager = currencyLayoutManager
 
@@ -186,7 +188,8 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency,
     }
 
     override fun getCurrencyPosToDelete(): Int {
-        return currencyAdapter.getCurrencyPosToDelete()
+//        return currencyAdapter.getCurrencyPosToDelete()
+        return currencyPosToDelete
     }
 
     override fun deleteCurrencyAt(position: Int) {
@@ -196,5 +199,9 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency,
     override fun btnAddCurrencyClicked() {
         BSDConvertor().show(childFragmentManager, null)
         currencyLayoutManager.scrollToPosition(currencyAdapter.itemCount)
+    }
+
+    override fun setCurrencyPosToDelete(position: Int) {
+        currencyPosToDelete = position
     }
 }

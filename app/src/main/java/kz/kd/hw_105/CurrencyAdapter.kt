@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class CurrencyAdapter(
     private val layoutInflater: LayoutInflater,
     private val listener: IFBtnAddCurrency,
+    private val setCurrencyPositionToDelete: IFSetCurrencyPosToDelete
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -48,6 +49,7 @@ class CurrencyAdapter(
             holder.bind(currency)
             holder.itemView.setOnLongClickListener {
                 currencyPosToDelete = holder.layoutPosition
+                setCurrencyPositionToDelete.setCurrencyPosToDelete(holder.layoutPosition)
                 Log.d("DF", "Position to delete = $currencyPosToDelete")
                 true
             }
