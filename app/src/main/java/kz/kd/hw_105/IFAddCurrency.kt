@@ -1,5 +1,5 @@
 package kz.kd.hw_105
 
-interface InterfaceAddCurrency {
+interface IFAddCurrency {
     fun addCurrency(currency: Currency)
 }

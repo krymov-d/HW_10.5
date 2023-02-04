@@ -3,17 +3,11 @@ package kz.kd.hw_105
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.isVisible
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SecondActivity : AppCompatActivity(R.layout.activity_second) {
 
-    private lateinit var tbChat: Toolbar
-    private lateinit var tbFavorites: Toolbar
-    private lateinit var tbConvertor: Toolbar
-    private lateinit var tbConvertorDelete: Toolbar
-    private lateinit var tbSearch: Toolbar
-    private lateinit var tbAccount: Toolbar
+    private lateinit var tbSecondActivity: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +17,8 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
     }
 
     private fun initToolBar() {
-        tbChat = findViewById(R.id.tb_chat)
-        tbFavorites = findViewById(R.id.tb_favorites)
-        tbConvertor = findViewById(R.id.tb_convertor)
-        tbConvertorDelete = findViewById(R.id.tb_convertor_delete)
-        tbSearch = findViewById(R.id.tb_search)
-        tbAccount = findViewById(R.id.tb_account)
-        setToolBarVisibility(0)
+        tbSecondActivity = findViewById(R.id.tb_second_activity)
+        setSupportActionBar(tbSecondActivity)
     }
 
     private fun initBottomNavigationBar() {
@@ -37,35 +26,35 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
         bnvSecondActivity.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_bnv_chat -> {
-                    setToolBarVisibility(1)
+                    tbSecondActivity.title = "Chat"
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fl_second_activity, FragmentChat(), "Fragment Chat")
                         .commit()
                     true
                 }
                 R.id.menu_bnv_favorites -> {
-                    setToolBarVisibility(2)
+                    tbSecondActivity.title = "Favorites"
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fl_second_activity, FragmentFavorites(), "Fragment Favorites")
                         .commit()
                     true
                 }
                 R.id.menu_bnv_convertor -> {
-                    setToolBarVisibility(3)
+                    tbSecondActivity.title = "Convertor"
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fl_second_activity, FragmentConvertor(), "Fragment Convertor")
                         .commit()
                     true
                 }
                 R.id.menu_bnv_search -> {
-                    setToolBarVisibility(4)
+                    tbSecondActivity.title = "Search"
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fl_second_activity, FragmentSearch(), "Fragment Search")
                         .commit()
                     true
                 }
                 R.id.menu_bnv_account -> {
-                    setToolBarVisibility(5)
+                    tbSecondActivity.title = "Account"
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fl_second_activity, FragmentAccount(), "Fragment Account")
                         .commit()
@@ -74,80 +63,5 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
                 else -> false
             }
         }
-    }
-
-    private fun setToolBarVisibility(type: Int) {
-        when (type) {
-            0 -> {
-                tbChat.isVisible = false
-                tbFavorites.isVisible = false
-                tbConvertor.isVisible = false
-                tbConvertorDelete.isVisible = false
-                tbSearch.isVisible = false
-                tbAccount.isVisible = false
-            }
-            1 -> {
-                tbChat.isVisible = true
-                tbFavorites.isVisible = false
-                tbConvertor.isVisible = false
-                tbConvertorDelete.isVisible = false
-                tbSearch.isVisible = false
-                tbAccount.isVisible = false
-                setSupportActionBar(tbChat)
-            }
-            2 -> {
-                tbChat.isVisible = false
-                tbFavorites.isVisible = true
-                tbConvertor.isVisible = false
-                tbConvertorDelete.isVisible = false
-                tbSearch.isVisible = false
-                tbAccount.isVisible = false
-                setSupportActionBar(tbFavorites)
-            }
-            3 -> {
-                tbChat.isVisible = false
-                tbFavorites.isVisible = false
-                tbConvertor.isVisible = true
-                tbConvertorDelete.isVisible = false
-                tbSearch.isVisible = false
-                tbAccount.isVisible = false
-                setSupportActionBar(tbConvertor)
-                tbConvertor.overflowIcon?.setTint(resources.getColor(R.color.btn_text_color))
-            }
-            4 -> {
-                tbChat.isVisible = false
-                tbFavorites.isVisible = false
-                tbConvertor.isVisible = false
-                tbConvertorDelete.isVisible = false
-                tbSearch.isVisible = true
-                tbAccount.isVisible = false
-                setSupportActionBar(tbSearch)
-            }
-            5 -> {
-                tbChat.isVisible = false
-                tbFavorites.isVisible = false
-                tbConvertor.isVisible = false
-                tbConvertorDelete.isVisible = false
-                tbSearch.isVisible = false
-                tbAccount.isVisible = true
-                setSupportActionBar(tbAccount)
-            }
-        }
-    }
-
-    fun tbConvertorChangeToConvertorDelete() {
-        tbConvertor.isVisible = false
-        tbConvertorDelete.isVisible = true
-        setSupportActionBar(tbConvertorDelete)
-    }
-
-    fun tbConvertorDeleteChangeToConvertor() {
-        tbConvertor.isVisible = true
-        tbConvertorDelete.isVisible = false
-    }
-
-    override fun onBackPressed() {
-        tbConvertorDeleteChangeToConvertor()
-        super.onBackPressed()
     }
 }

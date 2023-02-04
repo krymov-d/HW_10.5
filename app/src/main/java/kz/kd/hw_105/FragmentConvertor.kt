@@ -15,39 +15,30 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-private const val KEY_VISIBLE_ITEM = "Visible Item"
-private const val KEY_COMPLETELY_VISIBLE_ITEM = "Completely Visible Item"
+class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency,
+    IFGetCurrencyPosToDelete, IFDeleteCurrency, IFBtnAddCurrency {
 
-class FragmentConvertor : Fragment(R.layout.fragment_convertor), NewCurrencyAdd {
-
+    private lateinit var tbSecondActivity: Toolbar
+    private lateinit var tbConvertorDelete: Toolbar
+    private lateinit var rvCurrency: RecyclerView
     private lateinit var currencyAdapter: CurrencyAdapter
     private lateinit var currencyLayoutManager: LinearLayoutManager
-    private lateinit var rvCurrency: RecyclerView
-
-    private lateinit var tbConvertor: Toolbar
-    private lateinit var tbConvertorDelete: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setHasOptionsMenu(true)
+        initConvertorMenu()
+    }
 
-        //Does not work
-        if (savedInstanceState != null) {
-            val firstVisibleItem = savedInstanceState.getInt(KEY_VISIBLE_ITEM)
-            val firstCompletelyVisibleItem = savedInstanceState.getInt(KEY_COMPLETELY_VISIBLE_ITEM)
-            currencyLayoutManager.scrollToPositionWithOffset(
-                firstVisibleItem,
-                firstCompletelyVisibleItem
-            )
-        }
+    private fun initConvertorMenu() {
+        setHasOptionsMenu(true)
+        tbSecondActivity = requireActivity().findViewById(R.id.tb_second_activity)
+        tbConvertorDelete = requireActivity().findViewById(R.id.tb_convertor_delete)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        tbConvertor = requireActivity().findViewById(R.id.tb_convertor)
-        tbConvertorDelete = requireActivity().findViewById(R.id.tb_convertor_delete)
         val convertorInflater: MenuInflater = requireActivity().menuInflater
-        if (tbConvertor.isVisible) {
+        if (tbSecondActivity.isVisible) {
             convertorInflater.inflate(R.menu.menu_tb_convertor, menu)
         } else if (tbConvertorDelete.isVisible) {
             convertorInflater.inflate(R.menu.menu_tb_convertor_delete, menu)
@@ -73,6 +64,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), NewCurrencyAdd 
             }
             R.id.menu_delete -> {
                 DFConvertorDelete().show(requireActivity().supportFragmentManager, null)
+                tbConvertorDeleteChangeToConvertor(activity as SecondActivity)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -81,33 +73,23 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), NewCurrencyAdd 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvCurrency = view.findViewById(R.id.rv_currency)
-        initCurrencyRecycler()
+
+        initCurrencyRecycler(view)
         fillCurrency()
     }
 
-    //Does not work
-    override fun onSaveInstanceState(outState: Bundle) {
-        val firstVisibleItem = currencyLayoutManager.findFirstVisibleItemPosition()
-        val firstCompletelyVisibleItem =
-            currencyLayoutManager.findFirstCompletelyVisibleItemPosition()
-        outState.putInt(KEY_VISIBLE_ITEM, firstVisibleItem)
-        outState.putInt(KEY_COMPLETELY_VISIBLE_ITEM, firstCompletelyVisibleItem)
-        super.onSaveInstanceState(outState)
+    private fun initCurrencyRecycler(view: View) {
+        rvCurrency = view.findViewById(R.id.rv_currency)
+        currencyLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        currencyAdapter = CurrencyAdapter(layoutInflater, this)
+        rvCurrency.adapter = currencyAdapter
+        rvCurrency.layoutManager = currencyLayoutManager
+
+        initCurrencyItemDecoration()
+        initCurrencySwipeDrag()
     }
 
-    private fun initCurrencyRecycler() {
-        currencyAdapter =
-            CurrencyAdapter(layoutInflater, object : CurrencyAdapter.BtnAddClickListener {
-                override fun bntAddClicked() {
-                    currencyLayoutManager.scrollToPosition(currencyAdapter.itemCount)
-                    BSDConvertor().show(childFragmentManager, null)
-                }
-            })
-        currencyLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        rvCurrency.layoutManager = currencyLayoutManager
-        rvCurrency.adapter = currencyAdapter
-
+    private fun initCurrencyItemDecoration() {
         val dividerItemDecoration =
             DividerItemDecoration(context, currencyLayoutManager.orientation)
         dividerItemDecoration.setDrawable(
@@ -119,12 +101,10 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), NewCurrencyAdd 
             }!!
         )
         rvCurrency.addItemDecoration(dividerItemDecoration)
-
-        swipeCurrency()
     }
 
-    private fun swipeCurrency() {
-        val secondActivity = activity as SecondActivity?
+    private fun initCurrencySwipeDrag() {
+        val secondActivity = activity as SecondActivity
         val touchHelper =
             ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
                 ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -136,21 +116,32 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), NewCurrencyAdd 
                     target: RecyclerView.ViewHolder
                 ): Boolean {
                     currencyAdapter.onMoveDrag(viewHolder.layoutPosition, target.layoutPosition)
-                    secondActivity?.tbConvertorDeleteChangeToConvertor()
+                    tbConvertorDeleteChangeToConvertor(secondActivity)
                     return true
                 }
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    currencyAdapter.onSwipeDelete(viewHolder.layoutPosition)
-                    secondActivity?.tbConvertorDeleteChangeToConvertor()
+                    currencyAdapter.deleteCurrencyAt(viewHolder.layoutPosition)
+                    tbConvertorDeleteChangeToConvertor(secondActivity)
                 }
 
                 override fun isLongPressDragEnabled(): Boolean {
-                    (activity as SecondActivity?)?.tbConvertorChangeToConvertorDelete()
+                    tbConvertorChangeToConvertorDelete(secondActivity)
                     return super.isLongPressDragEnabled()
                 }
             })
         touchHelper.attachToRecyclerView(rvCurrency)
+    }
+
+    private fun tbConvertorChangeToConvertorDelete(activity: SecondActivity) {
+        tbSecondActivity.isVisible = false
+        tbConvertorDelete.isVisible = true
+        activity.setSupportActionBar(tbConvertorDelete)
+    }
+
+    private fun tbConvertorDeleteChangeToConvertor(activity: SecondActivity) {
+        tbSecondActivity.isVisible = true
+        tbConvertorDelete.isVisible = false
     }
 
     private fun fillCurrency() {
@@ -190,6 +181,20 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), NewCurrencyAdd 
         currencyAdapter.updateDataSet(currencyList)
     }
 
-    override fun setNewCurrency(currency: Currency) {
+    override fun addCurrency(currency: Currency) {
+        currencyAdapter.addNewCurrency(currency)
+    }
+
+    override fun getCurrencyPosToDelete(): Int {
+        return currencyAdapter.getCurrencyPosToDelete()
+    }
+
+    override fun deleteCurrencyAt(position: Int) {
+        currencyAdapter.deleteCurrencyAt(position)
+    }
+
+    override fun btnAddCurrencyClicked() {
+        BSDConvertor().show(childFragmentManager, null)
+        currencyLayoutManager.scrollToPosition(currencyAdapter.itemCount)
     }
 }

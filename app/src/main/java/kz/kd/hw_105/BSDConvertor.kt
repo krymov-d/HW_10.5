@@ -69,7 +69,7 @@ class BSDConvertor : BottomSheetDialogFragment() {
         }
 
         btnAdd.setOnClickListener {
-            (parentFragment as? NewCurrencyAdd)?.setNewCurrency(newCurrency)
+            (parentFragment as? IFAddCurrency)?.addCurrency(newCurrency)
             dismiss()
         }
     }

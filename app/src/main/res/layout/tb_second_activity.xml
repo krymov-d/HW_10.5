@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/btn_text_color_tint_4"
-    app:title="@string/tb_convertor"
     app:titleMarginStart="12dp"
     app:titleTextAppearance="@style/tb_title"
     app:titleTextColor="@color/btn_text_color" />

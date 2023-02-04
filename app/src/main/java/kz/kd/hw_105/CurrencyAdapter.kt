@@ -1,6 +1,7 @@
 package kz.kd.hw_105
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
@@ -8,17 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CurrencyAdapter(
     private val layoutInflater: LayoutInflater,
-    private val listener: BtnAddClickListener
+    private val listener: IFBtnAddCurrency,
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var currencyPosToDelete: Int = 0
 
     private var currencyList: MutableList<Currency> = mutableListOf()
     private var currencyListCopy: MutableList<Currency> = mutableListOf()
     private var sortType: Int = 0
-
-    interface BtnAddClickListener {
-        fun bntAddClicked()
-    }
 
     override fun getItemViewType(position: Int): Int {
         return if (position == currencyList.size) {
@@ -47,10 +46,15 @@ class CurrencyAdapter(
         if (holder is CurrencyViewHolder) {
             val currency = currencyList[position]
             holder.bind(currency)
+            holder.itemView.setOnLongClickListener {
+                currencyPosToDelete = holder.layoutPosition
+                Log.d("DF", "Position to delete = $currencyPosToDelete")
+                true
+            }
         } else if (holder is BtnAddViewHolder) {
             val btnAdd: Button = holder.itemView.findViewById(R.id.btn_add)
             btnAdd.setOnClickListener {
-                listener.bntAddClicked()
+                listener.btnAddCurrencyClicked()
             }
         }
     }
@@ -76,23 +80,21 @@ class CurrencyAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun onSwipeDelete(position: Int) {
+    fun deleteCurrencyAt(position: Int) {
         currencyList.removeAt(position)
         reserveCopy(currencyList)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, currencyList.size)
     }
 
+    fun getCurrencyPosToDelete(): Int {
+        return currencyPosToDelete
+    }
+
     @SuppressLint("NotifyDataSetChanged")
-    private fun newCurrencyAdded(position: Int) {
+    fun addNewCurrency(currency: Currency) {
         val newCurrencyListSize = currencyList.size + 1
-        val newCurrency = Currency(
-            amount = newCurrencyListSize.toString(),
-            flag = R.drawable.ic_rus,
-            country = "Россия",
-            currencyName = "Рубль"
-        )
-        currencyList.add(position, newCurrency)
+        currencyList.add(currency)
         reserveCopy(currencyList)
         when (sortType) {
             1 -> currencyList.sortBy { it.country }
@@ -101,7 +103,7 @@ class CurrencyAdapter(
                 currencyList.reverse()
             }
         }
-        val newPosition = currencyList.indexOf(newCurrency)
+        val newPosition = currencyList.indexOf(currency)
         notifyItemInserted(newPosition)
         notifyItemRangeChanged(newPosition, newCurrencyListSize)
     }
