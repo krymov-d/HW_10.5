@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency,
-    IFGetCurrencyPosToDelete, IFDeleteCurrency, IFBtnAddCurrency, IFSetCurrencyPosToDelete {
+class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, IFDeleteCurrency,
+    IFBtnAddCurrency, IFSetCurrencyPosToDelete {
 
     private lateinit var tbSecondActivity: Toolbar
     private lateinit var tbConvertorDelete: Toolbar
@@ -65,7 +65,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency,
                 true
             }
             R.id.menu_delete -> {
-                DFConvertorDelete().show(requireActivity().supportFragmentManager, null)
+                DFConvertorDelete(this).show(requireActivity().supportFragmentManager, null)
                 tbConvertorDeleteChangeToConvertor(activity as SecondActivity)
                 true
             }
@@ -187,13 +187,8 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency,
         currencyAdapter.addNewCurrency(currency)
     }
 
-    override fun getCurrencyPosToDelete(): Int {
-//        return currencyAdapter.getCurrencyPosToDelete()
-        return currencyPosToDelete
-    }
-
-    override fun deleteCurrencyAt(position: Int) {
-        currencyAdapter.deleteCurrencyAt(position)
+    override fun deleteCurrencyAt() {
+        currencyAdapter.deleteCurrencyAt(currencyPosToDelete)
     }
 
     override fun btnAddCurrencyClicked() {

@@ -1,7 +1,6 @@
 package kz.kd.hw_105
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
@@ -13,8 +12,6 @@ class CurrencyAdapter(
     private val setCurrencyPositionToDelete: IFSetCurrencyPosToDelete
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private var currencyPosToDelete: Int = 0
 
     private var currencyList: MutableList<Currency> = mutableListOf()
     private var currencyListCopy: MutableList<Currency> = mutableListOf()
@@ -48,9 +45,7 @@ class CurrencyAdapter(
             val currency = currencyList[position]
             holder.bind(currency)
             holder.itemView.setOnLongClickListener {
-                currencyPosToDelete = holder.layoutPosition
                 setCurrencyPositionToDelete.setCurrencyPosToDelete(holder.layoutPosition)
-                Log.d("DF", "Position to delete = $currencyPosToDelete")
                 true
             }
         } else if (holder is BtnAddViewHolder) {
@@ -87,10 +82,6 @@ class CurrencyAdapter(
         reserveCopy(currencyList)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, currencyList.size)
-    }
-
-    fun getCurrencyPosToDelete(): Int {
-        return currencyPosToDelete
     }
 
     @SuppressLint("NotifyDataSetChanged")
