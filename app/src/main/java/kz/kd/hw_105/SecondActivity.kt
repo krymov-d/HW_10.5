@@ -33,7 +33,7 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
                     true
                 }
                 R.id.menu_bnv_favorites -> {
-                    tbSecondActivity.title = "Favorites"
+                    tbSecondActivity.title = "Qyzyqty kontent"
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fl_second_activity, FragmentFavorites(), "Fragment Favorites")
                         .commit()
