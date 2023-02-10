@@ -2,11 +2,11 @@ package kz.kd.hw_105
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class FavoritesAdapter(
-    val layoutInflater: LayoutInflater
+    val layoutInflater: LayoutInflater,
+    private val listener: IFAnimationInit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val imageList: List<Int> = listOf(
@@ -30,11 +30,7 @@ class FavoritesAdapter(
         if (holder is FavoritesViewHolder) {
             holder.bind(imageList[position])
             holder.itemView.setOnClickListener {
-                Toast.makeText(
-                    holder.itemView.context,
-                    "Hello There! General $position",
-                    Toast.LENGTH_SHORT
-                ).show()
+                listener.animationStart(imageList[position])
             }
         }
     }
