@@ -13,6 +13,17 @@
         <item name="android:maxLength">4</item>
     </style>
 
+    <style name="custom_code_style">
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">48sp</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:layout_marginEnd">8dp</item>
+    </style>
+
     <style name="btn_style">
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@drawable/btn_bg_text_selector</item>

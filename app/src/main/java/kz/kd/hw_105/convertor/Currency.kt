@@ -1,4 +1,4 @@
-package kz.kd.hw_105
+package kz.kd.hw_105.convertor
 
 data class Currency(
     var amount: String = "",

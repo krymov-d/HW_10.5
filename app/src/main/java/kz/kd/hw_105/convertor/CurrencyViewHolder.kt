@@ -1,4 +1,4 @@
-package kz.kd.hw_105
+package kz.kd.hw_105.convertor
 
 import android.view.View
 import android.widget.EditText
@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
+import kz.kd.hw_105.R
 
 class CurrencyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val etAmount: EditText = itemView.findViewById(R.id.et_it_amount)

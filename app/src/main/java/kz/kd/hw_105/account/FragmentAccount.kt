@@ -1,4 +1,4 @@
-package kz.kd.hw_105
+package kz.kd.hw_105.account
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kz.kd.hw_105.R
 
 class FragmentAccount : Fragment(R.layout.fragment_account) {
 

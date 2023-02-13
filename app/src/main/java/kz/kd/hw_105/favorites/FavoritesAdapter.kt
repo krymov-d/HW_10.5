@@ -1,8 +1,9 @@
-package kz.kd.hw_105
+package kz.kd.hw_105.favorites
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kz.kd.hw_105.R
 
 class FavoritesAdapter(
     val layoutInflater: LayoutInflater,

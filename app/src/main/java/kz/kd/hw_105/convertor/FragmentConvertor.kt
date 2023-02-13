@@ -1,4 +1,4 @@
-package kz.kd.hw_105
+package kz.kd.hw_105.convertor
 
 import android.os.Bundle
 import android.view.Menu
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kz.kd.hw_105.*
 
 class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, IFDeleteCurrency,
     IFBtnAddCurrency, IFSetCurrencyPosToDelete {

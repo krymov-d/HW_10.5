@@ -1,10 +1,11 @@
-package kz.kd.hw_105
+package kz.kd.hw_105.convertor
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
+import kz.kd.hw_105.*
 
 class CurrencyAdapter(
     private val layoutInflater: LayoutInflater,

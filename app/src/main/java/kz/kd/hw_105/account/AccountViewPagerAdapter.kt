@@ -1,9 +1,10 @@
-package kz.kd.hw_105
+package kz.kd.hw_105.account
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
+import kz.kd.hw_105.R
 
 class AccountViewPagerAdapter : PagerAdapter() {
 

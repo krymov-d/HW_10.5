@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="bnv_bg" format="color|reference" />
+    <declare-styleable name="LLCustomPIN">
+        <attr name="max_digit" format="integer" />
+    </declare-styleable>
 </resources>

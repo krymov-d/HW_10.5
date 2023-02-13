@@ -1,4 +1,4 @@
-package kz.kd.hw_105
+package kz.kd.hw_105.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kz.kd.hw_105.R
 
 class FragmentFavorites : Fragment(), IFAnimationInit {
 

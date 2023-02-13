@@ -10,6 +10,7 @@
 
     <color name="btn_bg_white">#F5F5F5</color>
     <color name="btn_bg_blue">#1789DB</color>
+    <color name="btn_bg_blue_light">#b4c2cc</color>
     <color name="tv_hint_color">#808080</color>
     <color name="btn_bg_pressed">#E17171</color>
     <color name="btn_bg_border_pressed">#E80A0A</color>

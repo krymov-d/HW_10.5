@@ -1,4 +1,4 @@
-package kz.kd.hw_105
+package kz.kd.hw_105.convertor
 
 import android.app.Dialog
 import android.os.Bundle
@@ -12,6 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
+import kz.kd.hw_105.R
 
 class BSDConvertor : BottomSheetDialogFragment() {
 
