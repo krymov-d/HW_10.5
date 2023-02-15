@@ -2,6 +2,6 @@
 <resources>
     <attr name="bnv_bg" format="color|reference" />
     <declare-styleable name="LLCustomPIN">
-        <attr name="max_digit" format="integer" />
+        <attr name="pin_length" format="integer" />
     </declare-styleable>
 </resources>

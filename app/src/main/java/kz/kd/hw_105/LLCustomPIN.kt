@@ -21,7 +21,7 @@ class LLCustomPIN @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                maxDigit = this.getInt(R.styleable.LLCustomPIN_max_digit, 0)
+                maxDigit = this.getInt(R.styleable.LLCustomPIN_pin_length, 0)
             } finally {
                 recycle()
             }

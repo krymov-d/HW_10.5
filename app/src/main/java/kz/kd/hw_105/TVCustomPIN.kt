@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -16,13 +17,21 @@ class TVCustomPIN @JvmOverloads constructor(
     private var pinDigit = ""
     private var radius = 18f
     private var customStrokeWidth = 3f
-    private var colorRed = ColorStateList.valueOf(resources.getColor(R.color.btn_bg_border_pressed))
-    private var colorBlue = ColorStateList.valueOf(resources.getColor(R.color.btn_bg_blue))
+    private var colorRed =
+        ColorStateList.valueOf(ContextCompat.getColor(context, R.color.btn_bg_border_pressed))
+    private var colorBlue =
+        ColorStateList.valueOf(ContextCompat.getColor(context, R.color.btn_bg_blue))
     private var colorBlueLight =
-        ColorStateList.valueOf(resources.getColor(R.color.btn_bg_blue_light))
-    private var colorWhite = ColorStateList.valueOf(resources.getColor(R.color.btn_bg_white))
+        ColorStateList.valueOf(ContextCompat.getColor(context, R.color.btn_bg_blue_light))
+    private var colorWhite =
+        ColorStateList.valueOf(ContextCompat.getColor(context, R.color.btn_bg_white))
     private var colorGreen =
-        ColorStateList.valueOf(resources.getColor(R.color.btn_bg_pressed_gradient_start))
+        ColorStateList.valueOf(
+            ContextCompat.getColor(
+                context,
+                R.color.btn_bg_pressed_gradient_start
+            )
+        )
     private lateinit var shapeAppearanceModel: ShapeAppearanceModel
     private lateinit var shapeDrawable: MaterialShapeDrawable
 
