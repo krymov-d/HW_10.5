@@ -14,7 +14,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import kz.kd.hw_105.*
+import kz.kd.hw_105.convertor.api.CurrencyRetrofitBuilder
 
 class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, IFDeleteCurrency,
     IFBtnAddCurrency, IFSetCurrencyPosToDelete {
@@ -31,12 +35,19 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         super.onCreate(savedInstanceState)
 
         initConvertorMenu()
+        //getCurrencyList()
     }
 
     private fun initConvertorMenu() {
         setHasOptionsMenu(true)
         tbSecondActivity = requireActivity().findViewById(R.id.tb_second_activity)
         tbConvertorDelete = requireActivity().findViewById(R.id.tb_convertor_delete)
+    }
+
+    private fun getCurrencyList() {
+        MainScope().launch(Dispatchers.IO) {
+            CurrencyRetrofitBuilder.currencyAPIService.getCurrencyList()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -50,6 +61,9 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.menu_main_update -> {
+                true
+            }
             R.id.menu_main_reset -> {
                 currencyAdapter.reset()
                 invalidateOptionsMenu(requireActivity())
