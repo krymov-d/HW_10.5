@@ -17,7 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import kz.kd.hw_105.*
+import kz.kd.hw_105.R
+import kz.kd.hw_105.SecondActivity
 import kz.kd.hw_105.convertor.api.CurrencyRetrofitBuilder
 
 class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, IFDeleteCurrency,

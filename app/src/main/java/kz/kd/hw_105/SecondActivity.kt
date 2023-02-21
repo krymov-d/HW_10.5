@@ -41,35 +41,31 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
     private fun initBottomNavigationBar() {
         bnvSecondActivity = findViewById(R.id.bnv_second_activity)
         bnvSecondActivity.setupWithNavController(navControllerSecondActivity)
-        bnvSecondActivity.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.menu_bnv_chat -> {
-                    tbSecondActivity.title = "Chat"
-                    navControllerSecondActivity.navigate(R.id.fragmentChat)
-                    true
-                }
-                R.id.menu_bnv_favorites -> {
-                    tbSecondActivity.title = "Qyzyqty kontent"
-                    navControllerSecondActivity.navigate(R.id.fragmentFavorites)
-                    true
-                }
-                R.id.menu_bnv_convertor -> {
-                    tbSecondActivity.title = "Convertor"
-                    navControllerSecondActivity.navigate(R.id.fragmentConvertor)
-                    true
-                }
-                R.id.menu_bnv_search -> {
-                    tbSecondActivity.title = "Search"
-                    navControllerSecondActivity.navigate(R.id.fragmentSearch)
-                    true
-                }
-                R.id.menu_bnv_account -> {
-                    tbSecondActivity.title = "Account"
-                    navControllerSecondActivity.navigate(R.id.fragmentAccount)
-                    true
-                }
-                else -> false
-            }
-        }
+        bnvSecondActivity.selectedItemId = R.id.fragmentConvertor
+//        bnvSecondActivity.setOnItemSelectedListener {
+//            when (it.itemId) {
+//                R.id.fragmentChat -> {
+//                    tbSecondActivity.title = "Chat"
+//                    true
+//                }
+//                R.id.fragmentFavorites -> {
+//                    tbSecondActivity.title = "Qyzyqty kontent"
+//                    true
+//                }
+//                R.id.fragmentConvertor -> {
+//                    tbSecondActivity.title = "Convertor"
+//                    true
+//                }
+//                R.id.fragmentSearch -> {
+//                    tbSecondActivity.title = "Search"
+//                    true
+//                }
+//                R.id.fragmentAccount -> {
+//                    tbSecondActivity.title = "Account"
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
     }
 }

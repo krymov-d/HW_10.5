@@ -3,31 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_second"
-    app:startDestination="@id/fragmentChat">
+    app:startDestination="@id/fragmentConvertor">
 
     <fragment
         android:id="@+id/fragmentChat"
         android:name="kz.kd.hw_105.FragmentChat"
         android:label="FragmentChat"
-        tools:layout="@layout/fragment_chat"/>
+        tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/fragmentFavorites"
         android:name="kz.kd.hw_105.favorites.FragmentFavorites"
         android:label="FragmentFavorites"
-        tools:layout="@layout/fragment_favorites"/>
+        tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/fragmentConvertor"
         android:name="kz.kd.hw_105.convertor.FragmentConvertor"
         android:label="FragmentConvertor"
-        tools:layout="@layout/fragment_convertor"/>
+        tools:layout="@layout/fragment_convertor" />
     <fragment
         android:id="@+id/fragmentSearch"
         android:name="kz.kd.hw_105.FragmentSearch"
         android:label="FragmentSearch"
-        tools:layout="@layout/fragment_search"/>
+        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/fragmentAccount"
         android:name="kz.kd.hw_105.account.FragmentAccount"
         android:label="FragmentAccount"
-        tools:layout="@layout/fragment_account"/>
+        tools:layout="@layout/fragment_account" />
 </navigation>

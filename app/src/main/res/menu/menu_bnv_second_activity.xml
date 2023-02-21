@@ -2,35 +2,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_bnv_chat"
+        android:id="@+id/fragmentChat"
         android:enabled="true"
         android:icon="@drawable/iv_bnv_chat_selector"
         android:title="@string/bnv_chat"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_bnv_favorites"
+        android:id="@+id/fragmentFavorites"
         android:enabled="true"
         android:icon="@drawable/iv_bnv_favorites_selector"
         android:title="@string/bnv_favorites"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_bnv_convertor"
+        android:id="@+id/fragmentConvertor"
         android:enabled="true"
         android:icon="@drawable/iv_bnv_convertor_selector"
         android:title="@string/bnv_convertor"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_bnv_search"
+        android:id="@+id/fragmentSearch"
         android:enabled="true"
         android:icon="@drawable/iv_bnv_search_selector"
         android:title="@string/bnv_search"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_bnv_account"
+        android:id="@+id/fragmentAccount"
         android:enabled="true"
         android:icon="@drawable/iv_bnv_account_selector"
         android:title="@string/bnv_account"
