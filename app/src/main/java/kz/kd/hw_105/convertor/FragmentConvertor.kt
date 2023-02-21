@@ -1,6 +1,7 @@
 package kz.kd.hw_105.convertor
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
 import kz.kd.hw_105.R
 import kz.kd.hw_105.SecondActivity
 import kz.kd.hw_105.convertor.api.CurrencyRetrofitBuilder
+import kz.kd.hw_105.convertor.api.ResponseList
 
 class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, IFDeleteCurrency,
     IFBtnAddCurrency, IFSetCurrencyPosToDelete {
@@ -36,7 +38,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         super.onCreate(savedInstanceState)
 
         initConvertorMenu()
-        //getCurrencyList()
+        getCurrencyList()
     }
 
     private fun initConvertorMenu() {
@@ -47,7 +49,8 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
     private fun getCurrencyList() {
         MainScope().launch(Dispatchers.IO) {
-            CurrencyRetrofitBuilder.currencyAPIService.getCurrencyList()
+            val responseList: ResponseList = CurrencyRetrofitBuilder.currencyAPIService.getCurrencyList()
+            Log.e("Retro", "Response List: ${responseList.currencies}")
         }
     }
 
