@@ -131,4 +131,13 @@ class CurrencyAdapter(
         currencyList.reverse()
         notifyDataSetChanged()
     }
+
+    fun customConvert(rate1: Double, rate2: Double, rate3: Double) {
+        currencyList[1].amount = rate1.toString()
+        notifyItemChanged(1)
+        currencyList[2].amount = rate2.toString()
+        notifyItemChanged(2)
+        currencyList[3].amount = rate3.toString()
+        notifyItemChanged(3)
+    }
 }

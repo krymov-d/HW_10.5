@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat.invalidateOptionsMenu
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -41,6 +42,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         super.onCreate(savedInstanceState)
 
         initConvertorMenu()
+        getCurrencyList()
     }
 
     private fun initConvertorMenu() {
@@ -75,7 +77,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_main_update -> {
-                getCurrencyList()
+                //getCurrencyList()
                 true
             }
             R.id.menu_main_reset -> {
@@ -229,6 +231,11 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     }
 
     override fun updateCurrencyList(countryName: String, currencyAmount: Int) {
-
+        if (countryName == resources.getString(R.string.kz)) {
+            val rate1 = currencyAmount * currencyRate.quotes["KZTUSD"]!!
+            val rate2 = currencyAmount * currencyRate.quotes["KZTTRY"]!!
+            val rate3 = currencyAmount * currencyRate.quotes["KZTEUR"]!!
+            currencyAdapter.customConvert(rate1, rate2, rate3)
+        }
     }
 }
