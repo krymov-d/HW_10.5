@@ -6,6 +6,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat.invalidateOptionsMenu
@@ -24,15 +26,16 @@ import kz.kd.hw_105.convertor.api.CurrencyRetrofitBuilder
 import kz.kd.hw_105.convertor.api.LiveCurrencyRate
 
 class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, IFDeleteCurrency,
-    IFBtnAddCurrency, IFSetCurrencyPosToDelete {
+    IFBtnAddCurrency, IFSetCurrencyPosToDelete, IFUpdateCurrencyList {
 
     private lateinit var tbSecondActivity: Toolbar
     private lateinit var tbConvertorDelete: Toolbar
     private lateinit var rvCurrency: RecyclerView
     private lateinit var currencyAdapter: CurrencyAdapter
     private lateinit var currencyLayoutManager: LinearLayoutManager
-
+    private var currencyList = mutableListOf<Currency>()
     private var currencyPosToDelete: Int = 0
+    private lateinit var currencyRate: LiveCurrencyRate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,9 +51,15 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
     private fun getCurrencyList() {
         MainScope().launch(Dispatchers.IO) {
-            val currencyRate: LiveCurrencyRate =
-                CurrencyRetrofitBuilder.currencyAPIService.getCurrencyExchangeRate("KZT", "USD")
+            currencyRate =
+                CurrencyRetrofitBuilder.currencyAPIService.getCurrencyExchangeRate(
+                    "KZT",
+                    "USD,TRY,EUR"
+                )
+
             Log.e("Retro", "Response List: ${currencyRate.quotes["KZTUSD"]}")
+            Log.e("Retro", "Response List: ${currencyRate.quotes["KZTTRY"]}")
+            Log.e("Retro", "Response List: ${currencyRate.quotes["KZTEUR"]}")
         }
     }
 
@@ -103,7 +112,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     private fun initCurrencyRecycler(view: View) {
         rvCurrency = view.findViewById(R.id.rv_currency)
         currencyLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        currencyAdapter = CurrencyAdapter(layoutInflater, this, this)
+        currencyAdapter = CurrencyAdapter(layoutInflater, this, this, this)
         rvCurrency.adapter = currencyAdapter
         rvCurrency.layoutManager = currencyLayoutManager
 
@@ -167,10 +176,9 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     }
 
     private fun fillCurrency() {
-        val currencyList = mutableListOf<Currency>()
         currencyList.add(
             Currency(
-                amount = "1",
+                amount = "",
                 flag = R.drawable.ic_kz,
                 country = getString(R.string.kz),
                 currencyName = getString(R.string.kz_currency)
@@ -178,7 +186,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         )
         currencyList.add(
             Currency(
-                amount = "2",
+                amount = "",
                 flag = R.drawable.ic_usa,
                 country = getString(R.string.usa),
                 currencyName = getString(R.string.usa_currency)
@@ -186,7 +194,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         )
         currencyList.add(
             Currency(
-                amount = "3",
+                amount = "",
                 flag = R.drawable.ic_tr,
                 country = getString(R.string.tr),
                 currencyName = getString(R.string.tr_currency)
@@ -194,7 +202,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         )
         currencyList.add(
             Currency(
-                amount = "4",
+                amount = "",
                 flag = R.drawable.ic_eu,
                 country = getString(R.string.eu),
                 currencyName = getString(R.string.eu_currency)
@@ -218,5 +226,9 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
     override fun setCurrencyPosToDelete(position: Int) {
         currencyPosToDelete = position
+    }
+
+    override fun updateCurrencyList(countryName: String, currencyAmount: Int) {
+
     }
 }

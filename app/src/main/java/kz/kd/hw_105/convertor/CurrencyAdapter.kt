@@ -10,7 +10,8 @@ import kz.kd.hw_105.*
 class CurrencyAdapter(
     private val layoutInflater: LayoutInflater,
     private val listener: IFBtnAddCurrency,
-    private val setCurrencyPositionToDelete: IFSetCurrencyPosToDelete
+    private val setCurrencyPositionToDelete: IFSetCurrencyPosToDelete,
+    private val updateCurrencyList: IFUpdateCurrencyList,
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -35,7 +36,7 @@ class CurrencyAdapter(
         val view = layoutInflater.inflate(layoutID, parent, false)
 
         return if (viewType == 0) {
-            CurrencyViewHolder(view)
+            CurrencyViewHolder(view, updateCurrencyList)
         } else {
             BtnAddViewHolder(view)
         }

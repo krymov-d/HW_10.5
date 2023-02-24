@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:fontFamily="@font/montserrat_light"
+            android:inputType="numberSigned"
             tools:hint="@string/usa_currency" />
     </com.google.android.material.textfield.TextInputLayout>
 
