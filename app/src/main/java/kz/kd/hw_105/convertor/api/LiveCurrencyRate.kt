@@ -2,7 +2,7 @@ package kz.kd.hw_105.convertor.api
 
 import com.google.gson.annotations.SerializedName
 
-data class Response(
+data class LiveCurrencyRate(
     @SerializedName("success")
     val success: Boolean,
     @SerializedName("timestamp")

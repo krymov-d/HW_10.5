@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 import kz.kd.hw_105.R
 import kz.kd.hw_105.SecondActivity
 import kz.kd.hw_105.convertor.api.CurrencyRetrofitBuilder
-import kz.kd.hw_105.convertor.api.ResponseList
+import kz.kd.hw_105.convertor.api.LiveCurrencyRate
 
 class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, IFDeleteCurrency,
     IFBtnAddCurrency, IFSetCurrencyPosToDelete {
@@ -38,7 +38,6 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         super.onCreate(savedInstanceState)
 
         initConvertorMenu()
-        getCurrencyList()
     }
 
     private fun initConvertorMenu() {
@@ -49,8 +48,9 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
     private fun getCurrencyList() {
         MainScope().launch(Dispatchers.IO) {
-            val responseList: ResponseList = CurrencyRetrofitBuilder.currencyAPIService.getCurrencyList()
-            Log.e("Retro", "Response List: ${responseList.currencies}")
+            val currencyRate: LiveCurrencyRate =
+                CurrencyRetrofitBuilder.currencyAPIService.getCurrencyExchangeRate("KZT", "USD")
+            Log.e("Retro", "Response List: ${currencyRate.quotes["KZTUSD"]}")
         }
     }
 
@@ -66,6 +66,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_main_update -> {
+                getCurrencyList()
                 true
             }
             R.id.menu_main_reset -> {
