@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bsd_convertor_ic_usa"
+        style="@style/bsd_image_style"
+        android:src="@drawable/ic_usa"
+        app:layout_constraintBottom_toTopOf="@id/bsd_convertor_ic_tr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bsd_convertor_tv_usa"
+        style="@style/bsd_textview_style"
+        android:text="@string/usa_full"
+        app:layout_constraintBottom_toBottomOf="@id/bsd_convertor_ic_usa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bsd_convertor_ic_usa"
+        app:layout_constraintTop_toTopOf="@id/bsd_convertor_ic_usa" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bsd_convertor_ic_tr"
+        style="@style/bsd_image_style"
+        android:src="@drawable/ic_tr"
+        app:layout_constraintBottom_toTopOf="@id/bsd_convertor_ic_eu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bsd_convertor_ic_usa" />
+
+    <TextView
+        android:id="@+id/bsd_convertor_tv_tr"
+        style="@style/bsd_textview_style"
+        android:text="@string/tr_full"
+        app:layout_constraintBottom_toBottomOf="@id/bsd_convertor_ic_tr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bsd_convertor_ic_tr"
+        app:layout_constraintTop_toTopOf="@id/bsd_convertor_ic_tr" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bsd_convertor_ic_eu"
+        style="@style/bsd_image_style"
+        android:src="@drawable/ic_eu"
+        app:layout_constraintBottom_toTopOf="@id/bsd_convertor_ic_rus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bsd_convertor_ic_tr" />
+
+    <TextView
+        android:id="@+id/bsd_convertor_tv_eu"
+        style="@style/bsd_textview_style"
+        android:text="@string/eu_full"
+        app:layout_constraintBottom_toBottomOf="@id/bsd_convertor_ic_eu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bsd_convertor_ic_eu"
+        app:layout_constraintTop_toTopOf="@id/bsd_convertor_ic_eu" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bsd_convertor_ic_rus"
+        style="@style/bsd_image_style"
+        android:src="@drawable/ic_rus"
+        app:layout_constraintBottom_toTopOf="@id/bsd_convertor_flags_btn_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bsd_convertor_ic_eu" />
+
+    <TextView
+        android:id="@+id/bsd_convertor_tv_rus"
+        style="@style/bsd_textview_style"
+        android:text="@string/rus_full"
+        app:layout_constraintBottom_toBottomOf="@id/bsd_convertor_ic_rus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bsd_convertor_ic_rus"
+        app:layout_constraintTop_toTopOf="@id/bsd_convertor_ic_rus" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bsd_convertor_flags_btn_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/btn_bg_bsd_convertor"
+        android:backgroundTint="@null"
+        android:fontFamily="@font/montserrat_light"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:text="@string/add"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bsd_convertor_ic_rus"
+        app:layout_constraintVertical_bias="1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

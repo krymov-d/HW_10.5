@@ -17,14 +17,19 @@
     <string name="_0">0</string>
     <string name="kz">Казахстан</string>
     <string name="kz_currency">Тенге</string>
+    <string name="kz_full">Тенге, Казахстан</string>
     <string name="usa">США</string>
     <string name="usa_currency">Доллары</string>
+    <string name="usa_full">Доллары, США</string>
     <string name="tr">Турция</string>
     <string name="tr_currency">Лира</string>
+    <string name="tr_full">Лира, Турция</string>
     <string name="eu">EC</string>
     <string name="eu_currency">Евро</string>
+    <string name="eu_full">Евро, EC</string>
     <string name="rus">Россия</string>
     <string name="rus_currency">Рубль</string>
+    <string name="rus_full">Рубль, Россия</string>
     <string name="flag">flag</string>
     <string name="add">Добавить</string>
 
@@ -32,6 +37,7 @@
     <string name="tb_item_selected">Item Selected</string>
     <string name="tb_chat">Chat</string>
     <string name="tb_favorites">Favorites</string>
+    <string name="tb_favorites_kz">Qyzyqty kontent</string>
     <string name="tb_search">Search</string>
     <string name="tb_account">Account</string>
 

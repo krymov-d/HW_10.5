@@ -101,4 +101,27 @@
         <item name="android:textAlignment">center</item>
         <item name="android:fontFamily">@font/montserrat_light</item>
     </style>
+
+    <style name="bsd_image_style">
+        <item name="android:layout_width">52dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:background">@drawable/img_flag_bg</item>
+        <item name="layout_constraintHorizontal_bias">0</item>
+    </style>
+
+    <style name="bsd_textview_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="layout_constraintHorizontal_bias">0</item>
+        <item name="android:fontFamily">@font/montserrat_light</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:lineSpacingExtra">-1sp</item>
+        <item name="android:textColor">@color/tv_text_color</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>
