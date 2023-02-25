@@ -5,12 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kz.kd.hw_105.account.FragmentAccount
-import kz.kd.hw_105.convertor.FragmentConvertor
-import kz.kd.hw_105.favorites.FragmentFavorites
 
 class SecondActivity : AppCompatActivity(R.layout.activity_second) {
 
@@ -41,27 +37,28 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
     private fun initBottomNavigationBar() {
         bnvSecondActivity = findViewById(R.id.bnv_second_activity)
         bnvSecondActivity.setupWithNavController(navControllerSecondActivity)
+        //tbSecondActivity.setupWithNavController(navControllerSecondActivity)
         bnvSecondActivity.selectedItemId = R.id.fragmentConvertor
 //        bnvSecondActivity.setOnItemSelectedListener {
 //            when (it.itemId) {
 //                R.id.fragmentChat -> {
-//                    tbSecondActivity.title = "Chat"
+//                    tbSecondActivity.title = resources.getString(R.string.tb_chat)
 //                    true
 //                }
 //                R.id.fragmentFavorites -> {
-//                    tbSecondActivity.title = "Qyzyqty kontent"
+//                    tbSecondActivity.title = resources.getString(R.string.tb_favorites_kz)
 //                    true
 //                }
 //                R.id.fragmentConvertor -> {
-//                    tbSecondActivity.title = "Convertor"
+//                    tbSecondActivity.title = resources.getString(R.string.tb_convertor)
 //                    true
 //                }
 //                R.id.fragmentSearch -> {
-//                    tbSecondActivity.title = "Search"
+//                    tbSecondActivity.title = resources.getString(R.string.tb_search)
 //                    true
 //                }
 //                R.id.fragmentAccount -> {
-//                    tbSecondActivity.title = "Account"
+//                    tbSecondActivity.title = resources.getString(R.string.tb_account)
 //                    true
 //                }
 //                else -> false

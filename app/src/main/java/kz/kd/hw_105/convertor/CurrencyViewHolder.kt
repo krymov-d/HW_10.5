@@ -16,12 +16,19 @@ class CurrencyViewHolder(itemView: View, private val updateCurrencyList: IFUpdat
     private val ivFlag: ImageView = itemView.findViewById(R.id.iv_flag)
     private val tvCountry: TextView = itemView.findViewById(R.id.tv_country)
 
-    private var currencyAmount: Int = 0
+    private var currencyAmount: Double = 0.0
+    private lateinit var currencyAmountString: String
 
     fun bind(currency: Currency) {
         etAmount.setText(currency.amount)
         etAmount.addTextChangedListener {
-            currencyAmount = etAmount.text.toString().toInt()
+            currencyAmountString = etAmount.text.toString()
+            //App used to crash when field was empty
+            currencyAmount = if (currencyAmountString.isBlank()) {
+                0.0
+            } else {
+                currencyAmountString.toDouble()
+            }
             updateCurrencyList.updateCurrencyList(currency.country, currencyAmount)
         }
         tlAmount.hint = currency.currencyName

@@ -41,7 +41,7 @@ class BSDConvertorFlags : BottomSheetDialogFragment() {
         tvUSA.setOnClickListener {
             ivUSA.setBackgroundResource(R.drawable.img_flag_bg_selected)
             newCurrency.flag = R.drawable.ic_usa
-            newCurrency.amount = "99"
+            newCurrency.amount = "0.0"
             newCurrency.country = resources.getString(R.string.usa)
             newCurrency.currencyName = resources.getString(R.string.usa_currency)
         }
@@ -49,7 +49,7 @@ class BSDConvertorFlags : BottomSheetDialogFragment() {
         tvTR.setOnClickListener {
             ivTR.setBackgroundResource(R.drawable.img_flag_bg_selected)
             newCurrency.flag = R.drawable.ic_tr
-            newCurrency.amount = "99"
+            newCurrency.amount = "0.0"
             newCurrency.country = resources.getString(R.string.tr)
             newCurrency.currencyName = resources.getString(R.string.tr_currency)
         }
@@ -57,7 +57,7 @@ class BSDConvertorFlags : BottomSheetDialogFragment() {
         tvEU.setOnClickListener {
             ivEU.setBackgroundResource(R.drawable.img_flag_bg_selected)
             newCurrency.flag = R.drawable.ic_eu
-            newCurrency.amount = "99"
+            newCurrency.amount = "0.0"
             newCurrency.country = resources.getString(R.string.eu)
             newCurrency.currencyName = resources.getString(R.string.eu_currency)
         }
@@ -65,7 +65,7 @@ class BSDConvertorFlags : BottomSheetDialogFragment() {
         tvRUS.setOnClickListener {
             ivRUS.setBackgroundResource(R.drawable.img_flag_bg_selected)
             newCurrency.flag = R.drawable.ic_rus
-            newCurrency.amount = "99"
+            newCurrency.amount = "0.0"
             newCurrency.country = resources.getString(R.string.rus)
             newCurrency.currencyName = resources.getString(R.string.rus_currency)
         }

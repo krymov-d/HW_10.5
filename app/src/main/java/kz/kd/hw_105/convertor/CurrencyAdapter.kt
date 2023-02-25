@@ -1,11 +1,15 @@
 package kz.kd.hw_105.convertor
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.compose.ui.res.stringResource
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kz.kd.hw_105.*
+import kz.kd.hw_105.convertor.api.LiveCurrencyRate
 
 class CurrencyAdapter(
     private val layoutInflater: LayoutInflater,
@@ -132,12 +136,12 @@ class CurrencyAdapter(
         notifyDataSetChanged()
     }
 
-    fun customConvert(rate1: Double, rate2: Double, rate3: Double) {
-        currencyList[1].amount = rate1.toString()
+    fun convertCurrencies(vararg rate: Double) {
+        currencyList[1].amount = rate[0].toString()
         notifyItemChanged(1)
-        currencyList[2].amount = rate2.toString()
+        currencyList[2].amount = rate[1].toString()
         notifyItemChanged(2)
-        currencyList[3].amount = rate3.toString()
+        currencyList[3].amount = rate[2].toString()
         notifyItemChanged(3)
     }
 }
