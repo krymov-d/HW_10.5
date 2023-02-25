@@ -9,25 +9,54 @@
         android:id="@+id/fragmentChat"
         android:name="kz.kd.hw_105.FragmentChat"
         android:label="FragmentChat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_fragmentChat_to_fragmentFavorites"
+            app:destination="@id/fragmentFavorites" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentFavorites"
         android:name="kz.kd.hw_105.favorites.FragmentFavorites"
         android:label="FragmentFavorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_fragmentFavorites_to_fragmentConvertor"
+            app:destination="@id/fragmentConvertor" />
+        <action
+            android:id="@+id/action_fragmentFavorites_to_fragmentChat"
+            app:destination="@id/fragmentChat" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentConvertor"
         android:name="kz.kd.hw_105.convertor.FragmentConvertor"
         android:label="FragmentConvertor"
-        tools:layout="@layout/fragment_convertor" />
+        tools:layout="@layout/fragment_convertor" >
+        <action
+            android:id="@+id/action_fragmentConvertor_to_fragmentSearch"
+            app:destination="@id/fragmentSearch" />
+        <action
+            android:id="@+id/action_fragmentConvertor_to_fragmentFavorites"
+            app:destination="@id/fragmentFavorites" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentSearch"
         android:name="kz.kd.hw_105.FragmentSearch"
         android:label="FragmentSearch"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_fragmentSearch_to_fragmentAccount"
+            app:destination="@id/fragmentAccount" />
+        <action
+            android:id="@+id/action_fragmentSearch_to_fragmentConvertor"
+            app:destination="@id/fragmentConvertor" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentAccount"
         android:name="kz.kd.hw_105.account.FragmentAccount"
         android:label="FragmentAccount"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_fragmentAccount_to_fragmentSearch"
+            app:destination="@id/fragmentSearch" />
+    </fragment>
 </navigation>

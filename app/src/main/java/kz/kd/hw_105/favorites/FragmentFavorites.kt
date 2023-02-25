@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kd.hw_105.R
@@ -29,6 +31,16 @@ class FragmentFavorites : Fragment(), IFAnimationInit {
         super.onViewCreated(view, savedInstanceState)
         initFavoritesRV(view)
         initFavoritesAnimation(view)
+        initNavigation(view)
+    }
+
+    private fun initNavigation(view: View) {
+        view.findViewById<Button>(R.id.btn_favorites_to_chat).setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentFavorites_to_fragmentChat)
+        }
+        view.findViewById<Button>(R.id.btn_favorites_to_convertor).setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentFavorites_to_fragmentConvertor)
+        }
     }
 
     private fun initFavoritesRV(view: View) {

@@ -2,7 +2,9 @@ package kz.kd.hw_105.account
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -18,6 +20,13 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewPager(view)
+        initNavigation(view)
+    }
+
+    private fun initNavigation(view: View) {
+        view.findViewById<Button>(R.id.btn_account_to_search).setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentAccount_to_fragmentSearch)
+        }
     }
 
     private fun initViewPager(view: View) {

@@ -5,11 +5,13 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -101,6 +103,16 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
         initCurrencyRecycler(view)
         fillCurrency()
+        initNavigation(view)
+    }
+
+    private fun initNavigation(view: View) {
+        view.findViewById<Button>(R.id.btn_convertor_to_search).setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentConvertor_to_fragmentSearch)
+        }
+        view.findViewById<Button>(R.id.btn_convertor_to_favorites).setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentConvertor_to_fragmentFavorites)
+        }
     }
 
     private fun initCurrencyRecycler(view: View) {
