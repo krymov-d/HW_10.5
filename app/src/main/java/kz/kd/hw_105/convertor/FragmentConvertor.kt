@@ -1,9 +1,10 @@
 package kz.kd.hw_105.convertor
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
@@ -37,15 +38,11 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("Convertor", "OnCreate")
-        initConvertorMenu()
-        requestCurrencyApi()
-    }
 
-    private fun initConvertorMenu() {
-        setHasOptionsMenu(true)
-        tbSecondActivity = requireActivity().findViewById(R.id.tb_second_activity)
-        tbConvertorDelete = requireActivity().findViewById(R.id.tb_convertor_delete)
+        requestCurrencyApi()
+        initConvertorMenu()
+        initCurrencyAdapter()
+        fillCurrency()
     }
 
     private fun requestCurrencyApi() {
@@ -58,67 +55,64 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        val convertorInflater: MenuInflater = requireActivity().menuInflater
-        if (tbSecondActivity.isVisible) {
-            convertorInflater.inflate(R.menu.menu_tb_convertor, menu)
-        } else if (tbConvertorDelete.isVisible) {
-            convertorInflater.inflate(R.menu.menu_tb_convertor_delete, menu)
-        }
+    private fun initConvertorMenu() {
+        setHasOptionsMenu(true)
+        tbSecondActivity = requireActivity().findViewById(R.id.tb_second_activity)
+        tbConvertorDelete = requireActivity().findViewById(R.id.tb_convertor_delete)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_main_update -> {
-                requestCurrencyApi()
-                true
-            }
-            R.id.menu_main_reset -> {
-                currencyAdapter.reset()
-                invalidateOptionsMenu(requireActivity())
-                true
-            }
-            R.id.menu_main_sort_alpha -> {
-                item.isChecked = !item.isChecked
-                currencyAdapter.sortAlpha()
-                true
-            }
-            R.id.menu_main_sort_num -> {
-                item.isChecked = !item.isChecked
-                currencyAdapter.sortNum()
-                true
-            }
-            R.id.menu_delete -> {
-                DFConvertorDelete(this).show(requireActivity().supportFragmentManager, null)
-                tbConvertorDeleteChangeToConvertor(activity as SecondActivity)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+    private fun initCurrencyAdapter() {
+        currencyAdapter = CurrencyAdapter(layoutInflater, this, this, this)
+    }
+
+    private fun fillCurrency() {
+        currencyList.add(
+            Currency(
+                amount = "",
+                flag = R.drawable.ic_kz,
+                country = getString(R.string.kz),
+                currencyName = getString(R.string.kz_currency)
+            )
+        )
+        currencyList.add(
+            Currency(
+                amount = "",
+                flag = R.drawable.ic_usa,
+                country = getString(R.string.usa),
+                currencyName = getString(R.string.usa_currency)
+            )
+        )
+        currencyList.add(
+            Currency(
+                amount = "",
+                flag = R.drawable.ic_tr,
+                country = getString(R.string.tr),
+                currencyName = getString(R.string.tr_currency)
+            )
+        )
+        currencyList.add(
+            Currency(
+                amount = "",
+                flag = R.drawable.ic_eu,
+                country = getString(R.string.eu),
+                currencyName = getString(R.string.eu_currency)
+            )
+        )
+        currencyAdapter.updateDataSet(currencyList)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("Convertor", "OnViewCreated")
-        initCurrencyRecycler(view)
-        fillCurrency()
-        initNavigation(view)
-    }
 
-    private fun initNavigation(view: View) {
-        view.findViewById<Button>(R.id.btn_convertor_to_search).setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentConvertor_to_fragmentSearch)
-        }
-        view.findViewById<Button>(R.id.btn_convertor_to_favorites).setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentConvertor_to_fragmentFavorites)
-        }
+        initCurrencyRecycler(view)
+        initNavigation(view)
     }
 
     private fun initCurrencyRecycler(view: View) {
         rvCurrency = view.findViewById(R.id.rv_currency)
         currencyLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        currencyAdapter = CurrencyAdapter(layoutInflater, this, this, this)
-        rvCurrency.adapter = currencyAdapter
+        rvCurrency.adapter =
+            currencyAdapter //Recycler View Adapter initialization was moved to method onCreate()
         rvCurrency.layoutManager = currencyLayoutManager
 
         initCurrencyItemDecoration()
@@ -169,6 +163,56 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         touchHelper.attachToRecyclerView(rvCurrency)
     }
 
+    private fun initNavigation(view: View) {
+        view.findViewById<Button>(R.id.btn_convertor_to_search).setOnClickListener {
+            NavHostFragment.findNavController(this)
+                .navigate(R.id.action_fragmentConvertor_to_fragmentSearch)
+        }
+        view.findViewById<Button>(R.id.btn_convertor_to_favorites).setOnClickListener {
+            NavHostFragment.findNavController(this)
+                .navigate(R.id.action_fragmentConvertor_to_fragmentFavorites)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        val convertorInflater: MenuInflater = requireActivity().menuInflater
+        if (tbSecondActivity.isVisible) {
+            convertorInflater.inflate(R.menu.menu_tb_convertor, menu)
+        } else if (tbConvertorDelete.isVisible) {
+            convertorInflater.inflate(R.menu.menu_tb_convertor_delete, menu)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_main_update -> {
+                requestCurrencyApi()
+                true
+            }
+            R.id.menu_main_reset -> {
+                currencyAdapter.reset()
+                invalidateOptionsMenu(requireActivity())
+                true
+            }
+            R.id.menu_main_sort_alpha -> {
+                item.isChecked = !item.isChecked
+                currencyAdapter.sortAlpha()
+                true
+            }
+            R.id.menu_main_sort_num -> {
+                item.isChecked = !item.isChecked
+                currencyAdapter.sortNum()
+                true
+            }
+            R.id.menu_delete -> {
+                DFConvertorDelete(this).show(requireActivity().supportFragmentManager, null)
+                tbConvertorDeleteChangeToConvertor(activity as SecondActivity)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun tbConvertorChangeToConvertorDelete(activity: SecondActivity) {
         tbSecondActivity.isVisible = false
         tbConvertorDelete.isVisible = true
@@ -178,42 +222,6 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     private fun tbConvertorDeleteChangeToConvertor(activity: SecondActivity) {
         tbSecondActivity.isVisible = true
         tbConvertorDelete.isVisible = false
-    }
-
-    private fun fillCurrency() {
-        currencyList.add(
-            Currency(
-                amount = "0.0",
-                flag = R.drawable.ic_kz,
-                country = getString(R.string.kz),
-                currencyName = getString(R.string.kz_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "0.0",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "0.0",
-                flag = R.drawable.ic_tr,
-                country = getString(R.string.tr),
-                currencyName = getString(R.string.tr_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "0.0",
-                flag = R.drawable.ic_eu,
-                country = getString(R.string.eu),
-                currencyName = getString(R.string.eu_currency)
-            )
-        )
-        currencyAdapter.updateDataSet(currencyList)
     }
 
     override fun addCurrency(currency: Currency) {
@@ -269,54 +277,5 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 //                rateKZTEUR = rateKZTRUS * currencyRate.quotes["KZTEUR"]!!
 //            }
         }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.d("Convertor", "OnDetach")
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d("Convertor", "onAttach")
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        Log.d("Convertor", "onCreateView")
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    override fun onStart() {
-        Log.d("Convertor", "onStart")
-        super.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("Convertor", "onResume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("Convertor", "onStop")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("Convertor", "onDestroyView")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("Convertor", "onDestroy")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("Convertor", "onPause")
     }
 }
