@@ -1,11 +1,15 @@
 package kz.kd.hw_105.convertor
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import androidx.annotation.MainThread
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat.invalidateOptionsMenu
@@ -35,6 +39,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     private var currencyList = mutableListOf<Currency>()
     private var currencyPosToDelete: Int = 0
     private lateinit var currencyRate: LiveCurrencyRate
+    private val convertorThread = ConvertorThread()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -243,13 +248,23 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
         currencyPosToDelete = position
     }
 
+    private var rateKZTUSD = 0.0
+    private var rateKZTTRY = 0.0
+    private var rateKZTEUR = 0.0
+    private var rateKZTRUS = 0.0
+
+    //    private val handlerConvertorMain = object : Handler(Looper.getMainLooper()) {
+//        override fun handleMessage(msg: Message) {
+//            super.handleMessage(msg)
+//        }
+//    }
     override fun updateCurrencyList(countryName: String, currencyAmount: Double) {
         when (countryName) {
             resources.getString(R.string.kz) -> {
-                val rateKZTUSD = currencyAmount * currencyRate.quotes["KZTUSD"]!!
-                val rateKZTTRY = currencyAmount * currencyRate.quotes["KZTTRY"]!!
-                val rateKZTEUR = currencyAmount * currencyRate.quotes["KZTEUR"]!!
-                val rateKZTRUS = currencyAmount * currencyRate.quotes["KZTRUB"]!!
+                rateKZTUSD = currencyAmount * currencyRate.quotes["KZTUSD"]!!
+                rateKZTTRY = currencyAmount * currencyRate.quotes["KZTTRY"]!!
+                rateKZTEUR = currencyAmount * currencyRate.quotes["KZTEUR"]!!
+                rateKZTRUS = currencyAmount * currencyRate.quotes["KZTRUB"]!!
                 currencyAdapter.convertCurrencies(rateKZTUSD, rateKZTTRY, rateKZTEUR, rateKZTRUS)
             }
 //            resources.getString(R.string.usa) -> {
