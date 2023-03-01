@@ -1,10 +1,9 @@
 package kz.kd.hw_105.convertor
 
+import android.content.Context
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.util.Log
+import android.view.*
 import android.widget.Button
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
@@ -38,7 +37,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Log.d("Convertor", "OnCreate")
         initConvertorMenu()
         requestCurrencyApi()
     }
@@ -100,7 +99,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Log.d("Convertor", "OnViewCreated")
         initCurrencyRecycler(view)
         fillCurrency()
         initNavigation(view)
@@ -270,5 +269,54 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 //                rateKZTEUR = rateKZTRUS * currencyRate.quotes["KZTEUR"]!!
 //            }
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("Convertor", "OnDetach")
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("Convertor", "onAttach")
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        Log.d("Convertor", "onCreateView")
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    override fun onStart() {
+        Log.d("Convertor", "onStart")
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("Convertor", "onResume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("Convertor", "onStop")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("Convertor", "onDestroyView")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("Convertor", "onDestroy")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("Convertor", "onPause")
     }
 }
