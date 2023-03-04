@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kz.kd.hw_105.R
 import kz.kd.hw_105.SecondActivity
@@ -47,20 +48,20 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     }
 
     private fun requestCurrencyApi() {
-//        MainScope().launch(Dispatchers.IO) {
-//            currencyRate =
-//                CurrencyRetrofitBuilder.currencyAPIService.getCurrencyExchangeRate(
-//                    "KZT",
-//                    "USD,TRY,EUR,RUB"
-//                )
-//        }
-        GlobalScope.launch(Dispatchers.Default) {
+        MainScope().launch(Dispatchers.IO) {
             currencyRate =
                 CurrencyRetrofitBuilder.currencyAPIService.getCurrencyExchangeRate(
                     "KZT",
                     "USD,TRY,EUR,RUB"
                 )
         }
+//        GlobalScope.launch(Dispatchers.Default) {
+//            currencyRate =
+//                CurrencyRetrofitBuilder.currencyAPIService.getCurrencyExchangeRate(
+//                    "KZT",
+//                    "USD,TRY,EUR,RUB"
+//                )
+//        }
     }
 
     private fun initConvertorMenu() {

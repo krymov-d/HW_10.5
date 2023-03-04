@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -21,11 +22,13 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
         initToolBar()
         initNavigationHost()
         initBottomNavigationBar()
+        initNavigationController()
     }
 
     private fun initToolBar() {
         tbSecondActivity = findViewById(R.id.tb_second_activity)
         setSupportActionBar(tbSecondActivity)
+
     }
 
     private fun initNavigationHost() {
@@ -36,9 +39,8 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
 
     private fun initBottomNavigationBar() {
         bnvSecondActivity = findViewById(R.id.bnv_second_activity)
-        bnvSecondActivity.setupWithNavController(navControllerSecondActivity)
-        //tbSecondActivity.setupWithNavController(navControllerSecondActivity)
         bnvSecondActivity.selectedItemId = R.id.fragmentConvertor
+
 //        bnvSecondActivity.setOnItemSelectedListener {
 //            when (it.itemId) {
 //                R.id.fragmentChat -> {
@@ -64,5 +66,11 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
 //                else -> false
 //            }
 //        }
+    }
+
+    private fun initNavigationController() {
+        bnvSecondActivity.setupWithNavController(navControllerSecondActivity)
+        tbSecondActivity.setupWithNavController(navControllerSecondActivity)
+        //setupActionBarWithNavController(navControllerSecondActivity)
     }
 }

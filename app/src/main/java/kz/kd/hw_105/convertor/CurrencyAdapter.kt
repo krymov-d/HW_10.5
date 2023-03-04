@@ -1,15 +1,11 @@
 package kz.kd.hw_105.convertor
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.compose.ui.res.stringResource
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kz.kd.hw_105.*
-import kz.kd.hw_105.convertor.api.LiveCurrencyRate
 
 class CurrencyAdapter(
     private val layoutInflater: LayoutInflater,
@@ -29,6 +25,9 @@ class CurrencyAdapter(
         } else {
             0
         }
+
+        //!!!!!!!!!!!!!!!!!!!!!!
+        //val kztCurrency = currencyList.find { it.country == "KZT" }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
