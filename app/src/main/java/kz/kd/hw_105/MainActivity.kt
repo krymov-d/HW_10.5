@@ -8,8 +8,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import kz.kd.hw_105.pincode.MainViewModel
 
-private const val KEY = "Pin Code"
-
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
@@ -41,9 +39,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.pinCodeLiveData.observe(this) {
             customPINDefault()
-            for (i in it.indices) {
-                tvList[i].text = it[i]
-                tvList[i].setBackgroundToActive()
+            if (it != null) {
+                for (i in it.indices) {
+                    tvList[i].text = it[i]
+                    tvList[i].setBackgroundToActive()
+                }
             }
             customPINDeleted()
         }
