@@ -12,7 +12,7 @@
     <string name="nine">9</string>
     <string name="zero">0</string>
     <string name="del">&#60;</string>
-    <string name="ok">OK</string>
+    <string name="btn_ok">OK</string>
 
     <string name="_0">0</string>
     <string name="kz">Казахстан</string>

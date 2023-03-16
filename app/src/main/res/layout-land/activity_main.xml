@@ -114,7 +114,7 @@
         style="@style/btn_style"
         android:layout_marginStart="32dp"
         android:background="@drawable/btn_ok_bg_selector"
-        android:text="@string/ok"
+        android:text="@string/btn_ok"
         android:textColor="@color/btn_bg_blue"
         app:layout_constraintStart_toEndOf="@id/btn_zero"
         app:layout_constraintTop_toTopOf="@id/btn_zero" />

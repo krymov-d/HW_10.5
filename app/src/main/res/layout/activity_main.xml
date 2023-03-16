@@ -38,16 +38,6 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <TextView
-        android:id="@+id/tv_pin_code"
-        style="@style/code_style"
-        android:layout_marginBottom="32dp"
-        android:hint="@string/code"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/btn_two"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/btn_one"
         style="@style/btn_style"
@@ -148,7 +138,7 @@
         style="@style/btn_style"
         android:layout_marginStart="24dp"
         android:background="@drawable/btn_ok_bg_selector"
-        android:text="@string/ok"
+        android:text="@string/btn_ok"
         android:textColor="@color/btn_bg_blue"
         app:layout_constraintStart_toEndOf="@id/btn_zero"
         app:layout_constraintTop_toTopOf="@id/btn_zero" />
