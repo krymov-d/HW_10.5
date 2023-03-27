@@ -68,4 +68,9 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
     implementation "androidx.activity:activity-ktx:1.6.1"
+
+    //Koin
+    def koinVersion = "3.2.2"
+    implementation("io.insert-koin:koin-core:$koinVersion")
+    implementation("io.insert-koin:koin-android:$koinVersion")
 }

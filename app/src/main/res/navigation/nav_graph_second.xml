@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentChat"
-        android:name="kz.kd.hw_105.FragmentChat"
+        android:name="kz.kd.hw_105.presentation.chat.FragmentChat"
         android:label="FragmentChat"
         tools:layout="@layout/fragment_chat">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentFavorites"
-        android:name="kz.kd.hw_105.favorites.FragmentFavorites"
+        android:name="kz.kd.hw_105.presentation.favorites.FragmentFavorites"
         android:label="FragmentFavorites"
         tools:layout="@layout/fragment_favorites">
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentConvertor"
-        android:name="kz.kd.hw_105.convertor.FragmentConvertor"
+        android:name="kz.kd.hw_105.presentation.convertor.FragmentConvertor"
         android:label="FragmentConvertor"
         tools:layout="@layout/fragment_convertor">
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentSearch"
-        android:name="kz.kd.hw_105.FragmentSearch"
+        android:name="kz.kd.hw_105.presentation.search.FragmentSearch"
         android:label="FragmentSearch"
         tools:layout="@layout/fragment_search">
         <action
@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentAccount"
-        android:name="kz.kd.hw_105.account.FragmentAccount"
+        android:name="kz.kd.hw_105.presentation.account.FragmentAccount"
         android:label="FragmentAccount"
         tools:layout="@layout/fragment_account">
         <action
