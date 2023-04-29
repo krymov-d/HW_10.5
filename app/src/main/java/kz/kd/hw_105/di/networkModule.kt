@@ -1,9 +1,11 @@
 package kz.kd.hw_105.di
 
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import kz.kd.hw_105.constants.BASE_URL
 import kz.kd.hw_105.data.MainApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,8 +27,11 @@ val networkModule = module {
             .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
             .build()
+        val client = OkHttpClient.Builder()
+            .addInterceptor(ChuckerInterceptor.Builder(androidContext()).build())
+            .build()
 
-        okHttpClient
+        client
     }
 
     factory {
