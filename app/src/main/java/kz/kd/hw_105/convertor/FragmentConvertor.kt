@@ -1,6 +1,7 @@
 package kz.kd.hw_105.convertor
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
@@ -37,6 +40,7 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     private var currencyPosToDelete: Int = 0
     private lateinit var currencyRate: LiveCurrencyRate
     private val convertorThread = ConvertorThread()
+    private lateinit var constraintLayout: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,11 +53,21 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
 
     private fun requestCurrencyApi() {
         MainScope().launch(Dispatchers.IO) {
-            currencyRate =
+            currencyRate = try {
                 CurrencyRetrofitBuilder.currencyAPIService.getCurrencyExchangeRate(
                     "KZT",
                     "USD,TRY,EUR,RUB"
                 )
+            } catch (e: Exception) {
+                Log.d("CurrencyApi", "Error = $e")
+                Snackbar.make(constraintLayout, "Internet issues", Snackbar.LENGTH_SHORT).show()
+                LiveCurrencyRate(
+                    success = false,
+                    timestamp = 0,
+                    source = "KZT",
+                    quotes = mapOf("KZTKZT" to 1.0)
+                )
+            }
         }
 //        GlobalScope.launch(Dispatchers.Default) {
 //            currencyRate =
@@ -118,6 +132,8 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
     }
 
     private fun initCurrencyRecycler(view: View) {
+        constraintLayout = view.findViewById(R.id.fragment_convertor_cl)
+
         rvCurrency = view.findViewById(R.id.rv_currency)
         currencyLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvCurrency.adapter =
@@ -198,26 +214,31 @@ class FragmentConvertor : Fragment(R.layout.fragment_convertor), IFAddCurrency, 
                 requestCurrencyApi()
                 true
             }
+
             R.id.menu_main_reset -> {
                 currencyAdapter.reset()
                 invalidateOptionsMenu(requireActivity())
                 true
             }
+
             R.id.menu_main_sort_alpha -> {
                 item.isChecked = !item.isChecked
                 currencyAdapter.sortAlpha()
                 true
             }
+
             R.id.menu_main_sort_num -> {
                 item.isChecked = !item.isChecked
                 currencyAdapter.sortNum()
                 true
             }
+
             R.id.menu_delete -> {
                 DFConvertorDelete(this).show(requireActivity().supportFragmentManager, null)
                 tbConvertorDeleteChangeToConvertor(activity as SecondActivity)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
